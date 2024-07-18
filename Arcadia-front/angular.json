@@ -32,9 +32,13 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -105,6 +109,6 @@
     }
   },
   "cli": {
-    "analytics": "6f683b48-290a-416c-8164-6c7923ef21ef"
+    "analytics": "84c4763b-ec25-4167-9cb0-addefd51ba2b"
   }
 }
