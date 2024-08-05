@@ -1,15 +1,14 @@
 using ArcadiaBack;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using static System.Collections.Specialized.BitVector32;
-using System.ComponentModel;
-using System;
+using Arcadia_back.models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer("Server=DESKTOP-KFS7SQD;Database=arcadia;Trusted_Connection=True;Encrypt=False;"));
 
 builder.Services.AddCors(options =>
 {
