@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: RouteLinks.Habitats, component: HabitatsPageComponent },
   // {} // admin
   // {} // employees
-  // {} // veterinary
+  // {} // veterinaries
   { path: '', redirectTo: RouteLinks.Home, pathMatch: 'full' },
   { path: '**', redirectTo: RouteLinks.Home, pathMatch: 'full' },
 ];

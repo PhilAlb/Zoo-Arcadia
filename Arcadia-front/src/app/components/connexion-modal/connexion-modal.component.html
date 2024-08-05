@@ -1,25 +1,32 @@
 <!-- Bouton connexion -->
 <button type="button" class="btn btn-connexion" data-bs-toggle="modal" data-bs-target="#connexionModal">
     Connexion
-  </button>
-  
-  <!-- Modale -->
-  <div class="modal fade" id="connexionModal" tabindex="-1" role="dialog" aria-labelledby="connexionModal" aria-hidden="true">
+</button>
+
+<!-- Modale -->
+<div class="modal fade" id="connexionModal" tabindex="-1" role="dialog" aria-labelledby="connexionModal"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header justify-content-center">
-          <h5 class="modal-title" id="modalTitle">Connexion</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center" id="modalTitle">Connexion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label form-item-title">Email</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label form-item-title">Mot de passe</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" class="btn btn-submit">Se connecter</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-          <button type="button" class="btn btn-primary">Se connecter</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>

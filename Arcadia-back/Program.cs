@@ -111,8 +111,8 @@ app.MapGet("/testimonies", () =>
             Message = "Un après-midi magique dans un zoo immersif qui nous permet d'être au plus près des animaux de les voir évoluer dans un cadre 100 % adapté. Leur histoire touchante nous est comptée sur les panneaux d'information tout au long du parc."
         },
         new(){
-            Title = "\"Zoo immense\"",
-            Message = "Zoo immense, les animaux semblent très bien traités, on a vu le personnel au petits soins et tendre avec les animaux notamment avec les singes qui le rendent donc super ambiance, et moment agréable en famille. Tarif abordable."
+            Title = "\"Un zoo immense\"",
+            Message = "Un zoo immense, les animaux semblent très bien traités, on a vu le personnel au petits soins et tendre avec les animaux notamment avec les singes qui le rendent donc super ambiance, et moment agréable en famille. Tarif abordable."
         },
         new(){
             Title = "\"Superbe zoo\"",
