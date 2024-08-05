@@ -20,12 +20,9 @@
 
 .nav-link:hover {
     color: #d1c0a9;
+    text-decoration: underline;
 }
 
-/*.btn-custom {
-    border: solid;
-    border-color: #F2F2F2;
-    background-color: #F2F2F2;
-    color: black;
+.nav-link:active {
+    text-decoration: underline;
 }
-*/

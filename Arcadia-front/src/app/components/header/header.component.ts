@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RouteLinks } from '../../app.routes';
+import { ConnexionModalComponent } from "../connexion-modal/connexion-modal.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ConnexionModalComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
