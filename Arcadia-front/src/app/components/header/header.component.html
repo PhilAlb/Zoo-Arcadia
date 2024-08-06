@@ -15,41 +15,16 @@
             <a class="nav-link" [routerLink]="link.url">{{ link.label }}</a>
           </li>
           }
-          
           <li class="nav-item">
-            <a class="nav-link" style="cursor: pointer;" (click)="login()"><app-connexion-modal></app-connexion-modal></a>
-
+            <a class="nav-link" style="cursor: pointer;" (click)="openContactModal()" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+            <app-contact-modal></app-contact-modal>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="cursor: pointer;" (click)="login()"><app-connexion-modal></app-connexion-modal>
+            </a>
           </li>
         </ul>
       </nav>
-      <!-- Menu burger pour mobile -->
-      <div class="d-md-none">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarMenu"
-          aria-controls="navbarMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
     </div>
-  </div>
-  <!-- Menu burger déplié -->
-  <div class="collapse navbar-collapse" id="navbarMenu">
-    <ul class="nav text-decoration-none align-items-end">
-      @for (link of links; track $index){
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="link.url">{{ link.label }}</a>
-      </li>
-      }
-      
-      <li class="nav-item">
-        <a class="nav-link" (click)="login()">Connexion</a>
-      </li>
-    </ul>
   </div>
 </header>
