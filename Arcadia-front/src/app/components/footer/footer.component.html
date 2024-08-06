@@ -1,41 +1,58 @@
-    <!-- Footer -->
+<!-- Footer -->
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
+<footer class="footer">
+    <div class="container">
+        <div class="row">
 
-                <!-- Logo Section -->
+            <!-- Logo Section -->
 
-                <div class="col-md-4 text-center text-md-left">
-                    <img src="../../../assets/images/logos/Logo2.png" alt="Arcadia Zoo Logo" class="footer-logo">
-                    <p>Arcadia Zoo, un monde sauvage à découvrir.</p>
-                </div>
-
-                <!-- History Section -->
-
-                <div class="col-md-4 text-center">
-                    <h5>Notre Histoire</h5>
-                    <p>Depuis 1960, Arcadia Zoo offre une expérience inoubliable avec une diversité d'animaux.</p>
-                </div>
-
-                <!-- Navigation Section -->
-
-                <div class="col-md-4 text-center text-md-right">
-                    <h5>Navigation</h5>
-                    <ul class="nav flex-column">
-                        @for (link of links; track $index){
-                            <li class="nav-item">
-                              <a class="nav-link" [routerLink]="link.url">{{ link.label }}</a>
-                            </li>
-                        }                  
-                    </ul>
-                </div>
+            <div class="col-md-4 text-center text-md-left">
+                <img src="../../../assets/images/logos/Logo2.png" alt="Arcadia Zoo Logo" class="mb-0 footer-logo">
+                <ul class="d-flex justify-content-center list-unstyled social-networks">
+                    <li>
+                        <a href="">
+                            <img src="../../../assets/images/logos/footer/Instagram.svg">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="../../../assets/images/logos/footer/Youtube.svg">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="../../../assets/images/logos/footer/X.svg">
+                        </a>
+                    </li>
+                </ul>
+                <p>Arcadia Zoo, un monde sauvage à découvrir.</p>
             </div>
-            <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <p>© 2024 Arcadia Zoo. Tous droits réservés.</p>
-                    <p>Merci à tous nos visiteurs et supporters pour votre soutien continu.</p>
-                </div>
+
+            <!-- History Section -->
+
+            <div class="col-md-4 text-center">
+                <h5>Notre Histoire</h5>
+                <p>Depuis 1960, Arcadia Zoo offre une expérience inoubliable avec une diversité d'animaux.</p>
+            </div>
+
+            <!-- Navigation Section -->
+
+            <div class="col-md-4 text-center text-md-right">
+                <h5>Navigation</h5>
+                <ul class="nav flex-column">
+                    @for (link of links; track $index){
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="link.url">{{ link.label }}</a>
+                    </li>
+                    }
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <p>© 2024 Arcadia Zoo. Tous droits réservés.</p>
+                <p>Merci à tous nos visiteurs et supporters pour votre soutien continu.</p>
+            </div>
+        </div>
+    </div>
+</footer>
