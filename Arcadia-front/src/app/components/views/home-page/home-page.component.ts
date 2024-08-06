@@ -9,6 +9,7 @@ import { ICardTestimonyLayout } from '../../../interfaces/cardTestimonyLayout/IC
 import { ArcadiaService } from '../../../services/arcadia/arcadia.service';
 import { ICardServicesLayout } from '../../../interfaces/cardLayout/cardServicesLayout/ICardServicesLayout';
 import { ICardHabitatsLayout } from '../../../interfaces/cardLayout/cardHabitatsLayout/ICardHabitatsLayout';
+import { TestimonyModalComponent } from "../../modals/testimony-modal/testimony-modal.component";
 
 @Component({
   selector: 'app-home-page',
@@ -18,7 +19,8 @@ import { ICardHabitatsLayout } from '../../../interfaces/cardLayout/cardHabitats
     CommonModule,
     CarouselComponent,
     CardTestimonyComponent,
-  ],
+    TestimonyModalComponent
+],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })

@@ -18,6 +18,5 @@ export class HeaderComponent {
     { label: 'Habitats', url: `/${RouteLinks.Habitats}` },
   ];
 
-  openContactModal(): void {}
   login(): void {}
 }

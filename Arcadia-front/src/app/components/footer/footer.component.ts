@@ -16,6 +16,4 @@ export class FooterComponent {
     { label: 'Services', url: `/${RouteLinks.Services}` },
     { label: 'Habitats', url: `/${RouteLinks.Habitats}` },
   ];
-
-  openContactModal(): void {}
 }
