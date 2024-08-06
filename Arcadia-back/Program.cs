@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
         "AllowSpecificOrigin",
         builder =>
         {
-            builder.WithOrigins(configuration["AllowedHosts"] ?? throw new Exception("There is no value for the ALlowed Hosts parameter"))
+            builder.WithOrigins(configuration["AllowedOrigin"] ?? throw new Exception("There is no value for the ALlowed Hosts parameter"))
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         }
@@ -44,8 +44,6 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
-
-/*app.UseAuthorization();*/
 
 // Server endpoints
 app.MapGet("/habitats", async (IRepository<Habitat> habitatRepository) =>
@@ -114,6 +112,7 @@ app.MapGet("/testimonies", async (IRepository<Testimony> testimonyRepository) =>
         testimonyDtos.Add(new CardTestimonyDto()
         {
             Title = testimony.Title,
+            Message = testimony.Message,
         });
     };
 
