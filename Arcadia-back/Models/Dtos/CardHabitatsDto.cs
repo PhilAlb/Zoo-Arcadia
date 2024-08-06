@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ArcadiaBack
+namespace Arcadia_back.models.Dtos
 {
     public class CardHabitatsDto : CardDto
     {
