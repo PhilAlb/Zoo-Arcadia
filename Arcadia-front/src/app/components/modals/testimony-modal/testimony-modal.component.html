@@ -7,18 +7,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form [formGroup]="createTestimonyForm" (submit)="save()">
                     <div>
                         <div class="mb-3">
-                            <label for="email" class="form-label form-item-title">Pseudo</label>
-                            <input type="email" class="form-control" id="email">
+                            <label for="pseudo" class="form-label form-item-title">Pseudo</label>
+                            <input type="text" class="form-control" id="pseudo" [formControlName]="formControls.pseudo">
                         </div>
                         <div class="mb-3">
-                            <label for="#message" class="form-label form-item-title">Message</label>
-                            <textarea class="form-control" id="message"></textarea>
+                            <label for="message" class="form-label form-item-title">Message</label>
+                            <textarea class="form-control" id="message" [formControlName]="formControls.message"></textarea>
                         </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button type="submit" class="btn btn-submit" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#testimonyModal">Envoyer</button>
+                        <div class="modal-footer custom-modal-footer d-flex justify-content-center">
+                            <button [disabled]="createTestimonyForm.invalid" type="submit" class="btn btn-submit" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#testimonyModal">Envoyer</button>
                         </div>
                     </div>
                 </form>

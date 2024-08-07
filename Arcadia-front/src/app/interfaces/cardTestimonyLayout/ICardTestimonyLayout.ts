@@ -1,4 +1,4 @@
 export interface ICardTestimonyLayout {
-  title: string;
+  pseudo: string;
   message: string;
 }

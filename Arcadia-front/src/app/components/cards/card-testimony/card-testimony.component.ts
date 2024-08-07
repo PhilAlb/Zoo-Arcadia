@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './card-testimony.component.scss'
 })
 export class CardTestimonyComponent {
-  @Input() cardTitle: string="";
+  @Input() cardPseudo: string="";
   @Input() cardMessage: string="";
 }

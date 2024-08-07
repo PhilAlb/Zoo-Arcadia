@@ -65,7 +65,7 @@
     <div class="row">
       <div class="d-flex card-testimonies">
         @for (card of cardTestimonyLayout; track $index){
-        <app-card-testimony [cardTitle]="card.title" [cardMessage]="card.message"></app-card-testimony>
+        <app-card-testimony [cardPseudo]="card.pseudo" [cardMessage]="card.message"></app-card-testimony>
     }
       </div>
     </div>

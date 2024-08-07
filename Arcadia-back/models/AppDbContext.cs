@@ -150,23 +150,20 @@ namespace Arcadia_back.models
                 new()
                 {
                     Id = 1,
-                    Title = "\"Un après-midi magique\"",
                     Message = "Un après-midi magique dans un zoo immersif qui nous permet d'être au plus près des animaux de les voir évoluer dans un cadre 100 % adapté. Leur histoire touchante nous est comptée sur les panneaux d'information tout au long du parc.",
-                    Username = "Unknown"
+                    Pseudo = "Eric"
                 },
                 new()
                 {
                     Id = 2,
-                    Title = "\"Zoo immense\"",
                     Message = "Zoo immense, les animaux semblent très bien traités, on a vu le personnel au petits soins et tendre avec les animaux notamment avec les singes qui le rendent donc super ambiance, et moment agréable en famille. Tarif abordable.",
-                    Username = "Unknown"
+                    Pseudo = "Laura"
                 },
                 new()
                 {
                     Id = 3,
-                    Title = "\"Superbe zoo\"",
                     Message = "Superbe zoo. Des enclos bien entretenus et des grands espaces. Des animaux en bonne santé et beaucoup d'espèces. Espace pique nique, toilettes, buvettes, snack et boutique dans le parc. Je recommande fortement !",
-                    Username = "Unknown"
+                    Pseudo = "Justine"
                 }
             );
         }

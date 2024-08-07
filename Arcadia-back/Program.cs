@@ -2,6 +2,7 @@ using Arcadia_back.models;
 using Arcadia_back.models.Dtos;
 using Arcadia_back.Repositories;
 using ArcadiaBack;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -111,12 +112,17 @@ app.MapGet("/testimonies", async (IRepository<Testimony> testimonyRepository) =>
     {
         testimonyDtos.Add(new CardTestimonyDto()
         {
-            Title = testimony.Title,
+            Pseudo = testimony.Pseudo,
             Message = testimony.Message,
         });
     };
 
     return testimonyDtos;
+});
+
+app.MapPost("/testimonies", async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony) =>
+{
+    await testimonyRepository.AddAsync(testimony);
 });
 
 app.Run();
