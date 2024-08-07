@@ -2,11 +2,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ICardLayout } from '../../../../interfaces/cardLayout/ICardLayout';
 import { ArcadiaService } from '../../../../services/arcadia/arcadia.service';
+import { TestimonyModalComponent } from '../../../modals/testimony-modal/testimony-modal.component';
+import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-admin-animal-page',
   standalone: true,
-  imports: [],
+  imports: [TestimonyModalComponent, ConfirmationModalComponent],
   templateUrl: './admin-animal-page.component.html',
   styleUrl: './admin-animal-page.component.scss',
 })
@@ -29,7 +31,7 @@ export class AdminAnimalPageComponent implements OnInit {
 
   }
 
-  delete(): void {
-
+  delete(id: string): void {
+    console.log(id);
   }
 }

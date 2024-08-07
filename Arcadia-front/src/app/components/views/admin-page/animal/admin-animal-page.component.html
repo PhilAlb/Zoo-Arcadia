@@ -18,8 +18,11 @@
       <td>{{ element.url }}</td>
       <td>{{ element.verticalPosition }}</td>
       <td>
-        <button class="btn btn-link edit-button" (click)="edit()">Editer</button> |
-        <button class="btn btn-link delete-button" (click)="delete()">Supprimer</button>
+        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#testimonyModal">Editer</button>
+        <app-testimony-modal></app-testimony-modal>
+
+        <button type="button" class="btn btn-link delete-button" data-bs-toggle="modal" data-bs-target="#confirmationModal">Supprimer</button>
+        <app-confirmation-modal (confirmationSent)="delete(element.title)"></app-confirmation-modal>
       </td>
     </tr>
     }
