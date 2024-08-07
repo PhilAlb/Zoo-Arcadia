@@ -3,6 +3,7 @@ import { ArcadiaService } from "../../../services/arcadia/arcadia.service";
 import { CommonModule } from "@angular/common";
 import { CardHabitatsComponent } from "../../cards/card-habitats/card-habitats.component";
 import { ICardHabitatsLayout } from "../../../interfaces/cardLayout/cardHabitatsLayout/ICardHabitatsLayout";
+import { environment } from "../../../../../environment";
 
 @Component({
     selector: 'app-habitats-page',
@@ -12,6 +13,8 @@ import { ICardHabitatsLayout } from "../../../interfaces/cardLayout/cardHabitats
     styleUrl: './habitats-page.component.scss'
   })
   export class HabitatsPageComponent implements OnInit {
+    readonly apiUrl = environment.apiUrl;
+
     cardHabitatsLayout: ICardHabitatsLayout[] = [];
 
     constructor(private service: ArcadiaService) {}

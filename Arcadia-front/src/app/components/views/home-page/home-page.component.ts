@@ -10,6 +10,7 @@ import { ArcadiaService } from '../../../services/arcadia/arcadia.service';
 import { ICardServicesLayout } from '../../../interfaces/cardLayout/cardServicesLayout/ICardServicesLayout';
 import { ICardHabitatsLayout } from '../../../interfaces/cardLayout/cardHabitatsLayout/ICardHabitatsLayout';
 import { TestimonyModalComponent } from "../../modals/testimony-modal/testimony-modal.component";
+import { environment } from '../../../../../environment';
 
 @Component({
   selector: 'app-home-page',
@@ -25,6 +26,8 @@ import { TestimonyModalComponent } from "../../modals/testimony-modal/testimony-
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent implements OnInit {
+  readonly apiUrl = environment.apiUrl;
+
   cardHabitatLayout: ICardHabitatsLayout[] = [];
   cardServiceLayout: ICardServicesLayout[] = [];
   carouselLayout: ICarouselLayout[] = [];

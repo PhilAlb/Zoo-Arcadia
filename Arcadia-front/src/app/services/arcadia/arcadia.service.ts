@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environment';
 import { ICardHabitatsLayout } from '../../interfaces/cardLayout/cardHabitatsLayout/ICardHabitatsLayout';
 import { ICardServicesLayout } from '../../interfaces/cardLayout/cardServicesLayout/ICardServicesLayout';
 import { ICardTestimonyLayout } from '../../interfaces/cardTestimonyLayout/ICardTestimonyLayout';
@@ -10,10 +11,10 @@ import { ICarouselLayout } from '../../interfaces/carouselLayout/ICarouselLayout
   providedIn: 'root',
 })
 export class ArcadiaService {
-  private readonly _url = 'https://localhost:7096';
+  private readonly _url = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
-   getAllHabitats(): Observable<ICardHabitatsLayout[]> {
+  getAllHabitats(): Observable<ICardHabitatsLayout[]> {
     return this.http.get<ICardHabitatsLayout[]>(this._url + '/habitats');
   }
 
@@ -29,7 +30,7 @@ export class ArcadiaService {
     return this.http.get<ICardTestimonyLayout[]>(this._url + '/testimonies');
   }
 
-  addTestimonies(testimony: ICardTestimonyLayout): Observable<any> {
-    return this.http.post<ICardTestimonyLayout[]>(this._url + '/testimonies', testimony);
+  addTestimonies(testimony: ICardTestimonyLayout): Observable<boolean> {
+    return this.http.post<boolean>(this._url + '/testimonies', testimony);
   }
 }

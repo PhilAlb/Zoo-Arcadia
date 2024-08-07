@@ -1,32 +1,27 @@
-
 import { Component, OnInit } from '@angular/core';
-import { ICardLayout } from '../../../../interfaces/cardLayout/ICardLayout';
-import { ArcadiaService } from '../../../../services/arcadia/arcadia.service';
+import { AddTestimonyFormComponent } from '../forms/add-testimony-form/add-testimony-form.component';
+import { EditTestimonyFormComponent } from '../forms/edit-testimony-form/edit-testimony-form.component';
+import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-admin-testimony-page',
   standalone: true,
-  imports: [],
+  imports: [
+    AddTestimonyFormComponent,
+    EditTestimonyFormComponent,
+    ConfirmationModalComponent,
+  ],
   templateUrl: './admin-testimony-page.component.html',
   styleUrl: './admin-testimony-page.component.scss',
 })
-
 export class AdminTestimonyPageComponent implements OnInit {
-  cardHabitatLayout: ICardLayout[] = [];
+  constructor() {}
 
-  constructor(private service: ArcadiaService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.service
-      .getAllHabitats()
-      .subscribe((data: ICardLayout[]) => (this.cardHabitatLayout = data));
-  }
+  add(): void {}
 
-  edit(): void {
+  edit(): void {}
 
-  }
-
-  delete(): void {
-
-  }
+  delete(): void {}
 }

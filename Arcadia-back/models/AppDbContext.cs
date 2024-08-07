@@ -43,7 +43,7 @@ namespace Arcadia_back.models
                 new()
                 {
                     Id = 1,
-                    ImageUrl = "assets/images/carousel/lion1.jpg",
+                    ImageUrl = "assets/images/animals/lion1.jpg",
                     Name = "lion",
                     Race = "Unknown",
                     AssociatedHabitatId = 1
@@ -51,7 +51,7 @@ namespace Arcadia_back.models
                 new()
                 {
                     Id = 2,
-                    ImageUrl = "assets/images/carousel/tiger1.jpg",
+                    ImageUrl = "assets/images/animals/tiger1.jpg",
                     Name = "tiger-image",
                     Race = "Unknown",
                     AssociatedHabitatId = 1,
@@ -59,7 +59,7 @@ namespace Arcadia_back.models
                 new()
                 {
                     Id = 3,
-                    ImageUrl = "assets/images/carousel/monkey1.jpg",
+                    ImageUrl = "assets/images/animals/monkey1.jpg",
                     Name = "monkey-image",
                     Race = "Unknown",
                     AssociatedHabitatId = 1,
@@ -67,14 +67,14 @@ namespace Arcadia_back.models
                 new()
                 {
                     Id = 4,
-                    ImageUrl = "assets/images/carousel/panda1.jpg",
+                    ImageUrl = "assets/images/animals/panda1.jpg",
                     Name = "panda-image",
                     Race = "Unknown",
                     AssociatedHabitatId = 1,
                 }, new()
                 {
                     Id = 5,
-                    ImageUrl = "assets/images/carousel/outter1.jpg",
+                    ImageUrl = "assets/animals/outter1.jpg",
                     Name = "outter-image",
                     Race = "Unknown",
                     AssociatedHabitatId = 1,

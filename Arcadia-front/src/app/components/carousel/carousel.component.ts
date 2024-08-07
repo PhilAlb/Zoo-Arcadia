@@ -11,4 +11,5 @@ import { CommonModule } from '@angular/common';
 export class CarouselComponent {
   @Input() carouselImage: string="";
   @Input() animalName: string="";
+  @Input() isFirst: boolean;
 }

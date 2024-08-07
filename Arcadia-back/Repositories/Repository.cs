@@ -13,11 +13,11 @@ namespace Arcadia_back.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             try
             {
-                return await _dbContext.Set<T>().ToListAsync();
+                return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
             }
             catch (Exception ex)
             {
@@ -25,7 +25,7 @@ namespace Arcadia_back.Repositories
             }
         }
 
-        public async Task<T?> GetByIdAsync(int id)
+        public virtual async Task<T?> GetByIdAsync(int id)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace Arcadia_back.Repositories
             }
         }
 
-        public async Task AddAsync(T entity)
+        public virtual async Task AddAsync(T entity)
         {
             try
             {
@@ -48,14 +48,16 @@ namespace Arcadia_back.Repositories
             {
                 throw new Exception("An error occurred", ex);
             }
-
         }
 
-        public async Task UpdateAsync(T entity)
+        public virtual async Task UpdateAsync(T entityToUpdate, int id)
         {
             try
             {
-                _dbContext.Entry(entity).State = EntityState.Modified;
+                var entity = await _dbContext.Set<T>().FindAsync(id);
+                if (entity == null) return;
+                
+                _dbContext.Entry(entityToUpdate).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -65,7 +67,7 @@ namespace Arcadia_back.Repositories
 
         }
 
-        public async Task DeleteAsync(int id)
+        public virtual async Task DeleteAsync(int id)
         {
             try
             {

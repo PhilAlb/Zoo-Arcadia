@@ -1,32 +1,47 @@
-
+import { EditHabitatFormComponent } from './../forms/edit-habitat-form/edit-habitat-form.component';
 import { Component, OnInit } from '@angular/core';
-import { ICardLayout } from '../../../../interfaces/cardLayout/ICardLayout';
-import { ArcadiaService } from '../../../../services/arcadia/arcadia.service';
+import { HabitatDto } from '../../../../interfaces/habitat';
+import { HabitatService } from '../../../../services/habitat/habitat.service';
+import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
+import { AddHabitatFormComponent } from '../forms/add-habitat-form/add-habitat-form.component';
 
 @Component({
   selector: 'app-admin-habitat-page',
   standalone: true,
-  imports: [],
+  imports: [
+    AddHabitatFormComponent,
+    EditHabitatFormComponent,
+    ConfirmationModalComponent,
+  ],
   templateUrl: './admin-habitat-page.component.html',
   styleUrl: './admin-habitat-page.component.scss',
 })
-
 export class AdminHabitatPageComponent implements OnInit {
-  cardHabitatLayout: ICardLayout[] = [];
+  list: HabitatDto[] = [];
 
-  constructor(private service: ArcadiaService) { }
+  constructor(private service: HabitatService) {}
 
   ngOnInit(): void {
+    this.getList();
+  }
+
+  getList(): void {
     this.service
-      .getAllHabitats()
-      .subscribe((data: ICardLayout[]) => (this.cardHabitatLayout = data));
+      .getHabitats()
+      .subscribe((data: HabitatDto[]) => (this.list = data));
   }
 
-  edit(): void {
-
+  add(habitat: HabitatDto): void {
+    this.service.addHabitat(habitat).subscribe(() => this.getList());
   }
 
-  delete(): void {
+  edit(habitat: HabitatDto): void {
+    this.service.updateHabitat(habitat).subscribe(() => this.getList());
+  }
 
+  delete(id: number): void {
+    this.service
+      .deleteHabitat(id)
+      .subscribe(() => (this.list = this.list.filter((item) => item.id != id)));
   }
 }

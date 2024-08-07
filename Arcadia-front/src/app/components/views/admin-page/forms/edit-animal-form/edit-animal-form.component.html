@@ -1,0 +1,99 @@
+<div
+  class="modal fade"
+  [attr.id]="'editAnimal' + selectedAnimal.id"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="modalTitle">
+          Modifier un Animal
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm" (submit)="save()">
+          <div>
+            <div class="mb-3">
+              <label for="name" class="form-label form-item-title">Nom</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                [formControlName]="formControls.name"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="race" class="form-label form-item-title">Race</label>
+              <input
+                type="text"
+                class="form-control"
+                id="race"
+                [formControlName]="formControls.race"
+              />
+            </div>
+
+            <div class="mb-3 mt-3">
+              <label for="race" class="form-label form-item-title"
+                >Habitat associé</label
+              >
+
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {{ selectedHabitat?.title || selectedAnimal.associatedHabitatTitle }}
+                </button>
+
+                <ul class="dropdown-menu">
+                  @for(habitat of habitats; track $index){
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      (click)="selectedHabitat = habitat"
+                      >{{ habitat.title }}</a
+                    >
+                  </li>
+                  }
+                </ul>
+              </div>
+            </div>
+
+            <div
+              class="modal-footer custom-modal-footer d-flex justify-content-center"
+            >
+              <button
+                type="button"
+                class="btn btn-cancel"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#editAnimal' + selectedAnimal.id"
+              >
+                Fermer
+              </button>
+              <button
+                [disabled]="editForm.invalid"
+                type="submit"
+                class="btn btn-submit"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#editAnimal' + selectedAnimal.id"
+              >
+                Modifier
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

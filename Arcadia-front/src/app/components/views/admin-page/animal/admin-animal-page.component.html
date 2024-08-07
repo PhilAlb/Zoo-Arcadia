@@ -1,28 +1,58 @@
-<button class="btn btn-primary add-button" (click)="add()">Ajouter un nouvel élément</button>
+<h3>Liste des Animaux</h3>
+
+<button
+  type="button"
+  class="btn btn-primary add-button"
+  data-bs-toggle="modal"
+  data-bs-target="#addAnimal"
+>
+  Ajouter un nouvel élément
+</button>
+<app-add-animal-form (onSubmit)="add($event)"></app-add-animal-form>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Position (verticale)</th>
+      <th scope="col">Race</th>
+      <th scope="col">Habitat Associé</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     @for(element of list; track $index) {
     <tr>
-      <th scope="row">{{ $index }}</th>
-      <td>{{ element.title }}</td>
-      <td>{{ element.url }}</td>
-      <td>{{ element.verticalPosition }}</td>
+      <td scope="row">{{ $index + 1 }}</td>
+      <td>{{ element.name }}</td>
+      <td>{{ element.race }}</td>
+      <td>{{ element.associatedHabitatTitle }}</td>
       <td>
-        <button type="button" class="btn btn-link edit-button" data-bs-toggle="modal" data-bs-target="#testimonyModal">Editer</button>
-        <app-testimony-modal></app-testimony-modal>
+        <button
+          type="button"
+          class="btn btn-link edit-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#editAnimal' + element.id"
+        >
+          Editer
+        </button>
+        <app-edit-animal-form
+          [selectedAnimal]="element"
+          (onSubmit)="edit($event)"
+        ></app-edit-animal-form>
 
-        <button type="button" class="btn btn-link delete-button" data-bs-toggle="modal" data-bs-target="#confirmationModal">Supprimer</button>
-        <app-confirmation-modal (confirmationSent)="delete(element.title)"></app-confirmation-modal>
+        <button
+          type="button"
+          class="btn btn-link delete-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#confirmationModal' + element.id"
+        >
+          Supprimer
+        </button>
+        <app-confirmation-modal
+          [id]="element.id"
+          (confirmationSent)="delete(element.id ?? 0)"
+        ></app-confirmation-modal>
       </td>
     </tr>
     }

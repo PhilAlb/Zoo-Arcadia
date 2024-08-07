@@ -1,0 +1,58 @@
+<h3>Liste des Habitats</h3>
+
+<button
+  type="button"
+  class="btn btn-primary add-button"
+  data-bs-toggle="modal"
+  data-bs-target="#addHabitat"
+>
+  Ajouter un nouvel élément
+</button>
+<app-add-habitat-form (onSubmit)="add($event)"></app-add-habitat-form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(element of list; track $index) {
+    <tr>
+      <td scope="row">{{ $index + 1 }}</td>
+      <td>{{ element.title }}</td>
+      <td>{{ element.description }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-link edit-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#editHabitat' + element.id"
+        >
+          Editer
+        </button>
+        <app-edit-habitat-form
+          [selectedHabitat]="element"
+          (onSubmit)="edit($event)"
+        ></app-edit-habitat-form>
+
+        <button
+          type="button"
+          class="btn btn-link delete-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#confirmationModal' + element.id"
+        >
+          Supprimer
+        </button>
+        <app-confirmation-modal
+          [id]="element.id"
+          (confirmationSent)="delete(element.id ?? 0)"
+        ></app-confirmation-modal>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

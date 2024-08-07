@@ -1,28 +1,53 @@
-<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title w-100 text-center" id="modalTitle">Confirmation</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div
+  class="modal fade"
+  [attr.id]="'confirmationModal' + id"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="modalTitle">
+          Confirmation
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div>
+            <div class="mb-3">
+              <p class="form-label form-item-title">
+                Etes-vous sûr de vouloir confirmer cette action ?
+              </p>
             </div>
-            <div class="modal-body">
-                <form>
-                    <div>
-                        <div class="mb-3">
-                            <p class="form-label form-item-title">Etes-vous sûr de vouloir confirmer cette action ?</p>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                          <button class="btn btn-cancel" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#confirmationModal">Annuler</button>
-                          <button class="btn btn-submit"
-                                  (submit)="confirm()"
-                                  style="cursor: pointer;"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#confirmationModal">Confirmer</button>
-                        </div>
-                    </div>
-                </form>
+            <div class="modal-footer d-flex justify-content-center">
+              <button
+                type="button"
+                class="btn btn-cancel"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#confirmationModal' + id"
+                >
+                Annuler
+              </button>
+              <button
+                type="button"
+                class="btn btn-submit"
+                (click)="confirm()"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#confirmationModal' + id"
+                >
+                Confirmer
+              </button>
             </div>
-        </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

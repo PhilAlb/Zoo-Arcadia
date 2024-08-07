@@ -3,6 +3,7 @@ import { ArcadiaService } from "../../../services/arcadia/arcadia.service";
 import { CommonModule } from "@angular/common";
 import { CardServicesComponent } from "../../cards/card-services/card-services.component";
 import { ICardServicesLayout } from "../../../interfaces/cardLayout/cardServicesLayout/ICardServicesLayout";
+import { environment } from "../../../../../environment";
 
 @Component({
     selector: 'app-services-page',
@@ -12,6 +13,8 @@ import { ICardServicesLayout } from "../../../interfaces/cardLayout/cardServices
     styleUrl: './services-page.component.scss'
   })
   export class ServicesPageComponent implements OnInit {
+    readonly apiUrl = environment.apiUrl;
+
     cardServiceLayout: ICardServicesLayout[] = [];
 
     constructor(private service: ArcadiaService) {}
