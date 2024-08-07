@@ -1,27 +1,14 @@
 
-import { Component, OnInit } from '@angular/core';
-import { ICardLayout } from '../../../interfaces/cardLayout/ICardLayout';
-import { ArcadiaService } from '../../../services/arcadia/arcadia.service';
+import { Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { AdminAnimalPageComponent } from './animal/admin-animal-page.component';
 
 @Component({
   selector: 'app-admin-page',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, RouterOutlet, AdminAnimalPageComponent],
   templateUrl: './admin-page.component.html',
   styleUrl: './admin-page.component.scss',
 })
-export class AdminPageComponent implements OnInit {
-  cardHabitatLayout: ICardLayout[] = [];
-
-  constructor(private service: ArcadiaService) {}
-
-  ngOnInit(): void {
-    this.service
-      .getAllHabitats()
-      .subscribe((data: ICardLayout[]) => (this.cardHabitatLayout = data));
-  }
-
-  delete(): void {}
-
-  edit(): void {}
+export class AdminPageComponent {
 }

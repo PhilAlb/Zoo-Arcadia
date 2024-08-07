@@ -1,24 +1,11 @@
 <h1>Page Administateur</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Position (verticale)</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(card of cardHabitatLayout; track $index) {
-    <tr>
-      <th scope="row">{{ $index }}</th>
-      <td>{{ card.title }}</td>
-      <td>{{ card.url }}</td>
-      <td>{{ card.verticalPosition }}</td>
-      <td><a (click)="edit()">Editer</a> | <a (click)="delete()">Supprimer</a></td>
-    </tr>
-    }
-  </tbody>
-</table>
+<ul>
+  <li><a class="link" routerLink="/admin/animals">Animaux</a></li>
+  <li><a class="link" routerLink="/admin/habitats">Habitats</a></li>
+  <li><a class="link" routerLink="/admin/services">Services</a></li>
+  <li><a class="link" routerLink="/admin/testimonies">Témoignages</a></li>
+  <li><a class="link" routerLink="/admin/users">Utilisateurs</a></li>
+</ul>
+
+<router-outlet></router-outlet>

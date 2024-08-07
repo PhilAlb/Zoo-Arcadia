@@ -1,0 +1,27 @@
+<button class="btn btn-primary add-button" (click)="add()">Ajouter un nouvel élément</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Position (verticale)</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(element of list; track $index) {
+    <tr>
+      <th scope="row">{{ $index }}</th>
+      <td>{{ element.title }}</td>
+      <td>{{ element.url }}</td>
+      <td>{{ element.verticalPosition }}</td>
+      <td>
+        <button class="btn btn-link edit-button" (click)="edit()">Editer</button> |
+        <button class="btn btn-link delete-button" (click)="delete()">Supprimer</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

@@ -16,6 +16,7 @@ export class HeaderComponent {
     { label: 'Accueil', url: `/${RouteLinks.Home}` },
     { label: 'Services', url: `/${RouteLinks.Services}` },
     { label: 'Habitats', url: `/${RouteLinks.Habitats}` },
+    { label: 'Admin', url: `/${RouteLinks.Admin}` },
   ];
 
   login(): void {}
