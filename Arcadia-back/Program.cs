@@ -1,5 +1,8 @@
 using Arcadia_back.models;
 using Arcadia_back.Repositories;
+using ArcadiaBack;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 
@@ -14,6 +17,34 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("Value")));
 
+// User Identity configuration     
+builder.Services.AddIdentity<User, IdentityRole>(
+    options =>
+    {
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequiredLength = 6;
+        options.User.RequireUniqueEmail = true;
+    })
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/";
+    options.LogoutPath = "/";
+    options.AccessDeniedPath = "/";
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SameSite = SameSiteMode.None;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    options.SlidingExpiration = true;
+});
+
+builder.Services.AddAuthorization();
+
 // Repositories
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
@@ -25,9 +56,10 @@ builder.Services.AddCors(options =>
         "AllowSpecificOrigin",
         builder =>
         {
-            builder.WithOrigins(configuration["AllowedOrigin"] ?? throw new Exception("There is no value for the ALlowed Hosts parameter"))
+            builder.WithOrigins(configuration["AllowedOrigin"] ?? throw new Exception("There is no value for the Allowed Hosts parameter"))
                 .AllowAnyHeader()
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowCredentials();
         }
     );
 });
@@ -45,6 +77,10 @@ app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseStaticFiles(); // Enables static file serving
 app.UseStaticFiles(new StaticFileOptions
 {
@@ -53,6 +89,9 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 /// Server endpoints
+// Login/Logout 
+app.MapAccountEndpoints();
+
 // User
 app.MapHomeEndpoints();
 

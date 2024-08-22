@@ -25,7 +25,7 @@ namespace Arcadia_back.Repositories
             }
         }
 
-        public virtual async Task<T?> GetByIdAsync(int id)
+        public virtual async Task<T?> GetByIdAsync(object id)
         {
             try
             {
@@ -50,13 +50,13 @@ namespace Arcadia_back.Repositories
             }
         }
 
-        public virtual async Task UpdateAsync(T entityToUpdate, int id)
+        public virtual async Task UpdateAsync(T entityToUpdate, object id)
         {
             try
             {
                 var entity = await _dbContext.Set<T>().FindAsync(id);
                 if (entity == null) return;
-                
+
                 _dbContext.Entry(entityToUpdate).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
             }
@@ -67,7 +67,7 @@ namespace Arcadia_back.Repositories
 
         }
 
-        public virtual async Task DeleteAsync(int id)
+        public virtual async Task DeleteAsync(object id)
         {
             try
             {

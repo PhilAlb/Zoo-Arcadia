@@ -1,1 +1,58 @@
 <h3>Liste des Témoignages</h3>
+
+<button
+  type="button"
+  class="btn btn-primary add-button"
+  data-bs-toggle="modal"
+  data-bs-target="#addTestimony"
+>
+  Ajouter un nouvel élément
+</button>
+<app-add-testimony-form (onSubmit)="add($event)"></app-add-testimony-form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Pseudo</th>
+      <th scope="col">Message</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(element of list; track $index) {
+    <tr>
+      <td scope="row">{{ $index + 1 }}</td>
+      <td>{{ element.pseudo }}</td>
+      <td>{{ element.message }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-link edit-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#editTestimony' + element.id"
+        >
+          Editer
+        </button>
+        <app-edit-testimony-form
+          [selectedTestimony]="element"
+          (onSubmit)="edit($event)"
+        ></app-edit-testimony-form>
+
+        <button
+          type="button"
+          class="btn btn-link delete-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#confirmationModal' + element.id"
+        >
+          Supprimer
+        </button>
+        <app-confirmation-modal
+          [id]="element.id"
+          (confirmationSent)="delete(element.id ?? 0)"
+        ></app-confirmation-modal>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

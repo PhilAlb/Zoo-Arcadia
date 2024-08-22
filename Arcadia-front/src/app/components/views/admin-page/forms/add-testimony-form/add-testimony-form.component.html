@@ -1,1 +1,29 @@
-<p>add-testimony-form works!</p>
+<div class="modal fade" id="addTestimony" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center" id="modalTitle">Ajouter un Témoignage</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createForm" (submit)="save()">
+                    <div>
+                        <div class="mb-3">
+                            <label for="pseudo" class="form-label form-item-title">Pseudo</label>
+                            <input type="text" class="form-control" id="pseudo" [formControlName]="formControls.pseudo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label form-item-title">Message</label>
+                            <textarea class="form-control" id="message" [formControlName]="formControls.message"></textarea>
+                        </div>
+                       
+                        <div class="modal-footer custom-modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-cancel" data-bs-toggle="modal" data-bs-target="#addTestimony">Fermer</button>
+                            <button [disabled]="createForm.invalid" type="submit" class="btn btn-submit" data-bs-toggle="modal" data-bs-target="#addTestimony">Ajouter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

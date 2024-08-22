@@ -1,1 +1,60 @@
 <h3>Liste des Services</h3>
+
+<button
+  type="button"
+  class="btn btn-primary add-button"
+  data-bs-toggle="modal"
+  data-bs-target="#addService"
+>
+  Ajouter un nouvel élément
+</button>
+<app-add-service-form (onSubmit)="add($event)"></app-add-service-form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Planning</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(element of list; track $index) {
+    <tr>
+      <td scope="row">{{ $index + 1 }}</td>
+      <td>{{ element.title }}</td>
+      <td>{{ element.description }}</td>
+      <td>{{ element.schedules }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-link edit-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#editService' + element.id"
+        >
+          Editer
+        </button>
+        <app-edit-service-form
+          [selectedService]="element"
+          (onSubmit)="edit($event)"
+        ></app-edit-service-form>
+
+        <button
+          type="button"
+          class="btn btn-link delete-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#confirmationModal' + element.id"
+        >
+          Supprimer
+        </button>
+        <app-confirmation-modal
+          [id]="element.id"
+          (confirmationSent)="delete(element.id ?? 0)"
+        ></app-confirmation-modal>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ICardTestimonyLayout } from '../../../interfaces/cardTestimonyLayout/ICardTestimonyLayout';
+import { ICardTestimonyLayout } from '../../../interfaces/cardLayout/cardTestimonyLayout/ICardTestimonyLayout';
 import { ArcadiaService } from '../../../services/arcadia/arcadia.service';
 
 @Component({

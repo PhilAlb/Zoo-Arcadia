@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CarouselComponent } from './carousel.component';
+import { EditUserFormComponent } from './edit-user-form.component';
 
-describe('CarouselComponent', () => {
-  let component: CarouselComponent;
-  let fixture: ComponentFixture<CarouselComponent>;
+describe('EditUserFormComponent', () => {
+  let component: EditUserFormComponent;
+  let fixture: ComponentFixture<EditUserFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CarouselComponent]
+      imports: [EditUserFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CarouselComponent);
+    fixture = TestBed.createComponent(EditUserFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

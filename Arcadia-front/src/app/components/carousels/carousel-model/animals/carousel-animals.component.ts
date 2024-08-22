@@ -2,14 +2,16 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-carousel',
+  selector: 'app-carousel-animals',
   standalone: true,
   imports: [ CommonModule ],
-  templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.scss'
+  templateUrl: './carousel-animals.component.html',
+  styleUrl: './carousel-animals.component.scss'
 })
-export class CarouselComponent {
+export class CarouselAnimalsComponent {
   @Input() carouselImage: string="";
   @Input() animalName: string="";
   @Input() isFirst: boolean;
+
+  constructor() { }
 }

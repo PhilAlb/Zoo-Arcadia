@@ -1,5 +1,6 @@
 using Arcadia_back.Repositories;
 using ArcadiaBack;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 public static class AnimalEndpoints
@@ -8,7 +9,7 @@ public static class AnimalEndpoints
 
     public static void MapAnimalEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet(url, async (IAnimalRepository animalRepository) =>
+        app.MapGet(url, [Authorize(Roles = "Admin")] async (IAnimalRepository animalRepository) =>
         {
             var animals = await animalRepository.GetAllAsync();
             var animalDtos = new List<AnimalDto>();
@@ -28,7 +29,7 @@ public static class AnimalEndpoints
             return animalDtos;
         });
 
-        app.MapPost(url, async (IAnimalRepository animalRepository, [FromForm] AnimalDto animalDto) =>
+        app.MapPost(url, [Authorize(Roles = "Admin")] async (IAnimalRepository animalRepository, [FromForm] AnimalDto animalDto) =>
         {
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "assets/images/animals");
             if (!Directory.Exists(uploadPath))
@@ -60,7 +61,7 @@ public static class AnimalEndpoints
             return true;
         }).DisableAntiforgery();
 
-        app.MapPut(url + "/{id}", async (IAnimalRepository animalRepository, [FromBody] AnimalDto animal, int id) =>
+        app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IAnimalRepository animalRepository, [FromBody] AnimalDto animal, int id) =>
         {
             var animalToUpdate = await animalRepository.GetByIdAsync(id);
             if (animalToUpdate == null) return false;
@@ -73,7 +74,7 @@ public static class AnimalEndpoints
             return true;
         });
 
-        app.MapDelete(url + "/{id}", async (IAnimalRepository animalRepository, int id) =>
+        app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IAnimalRepository animalRepository, int id) =>
         {
             await animalRepository.DeleteAsync(id);
             return true;

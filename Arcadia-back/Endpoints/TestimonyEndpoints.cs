@@ -1,5 +1,6 @@
 using Arcadia_back.Repositories;
 using ArcadiaBack;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 public static class TestimonyEndpoints
@@ -8,23 +9,32 @@ public static class TestimonyEndpoints
 
     public static void MapTestimonyEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet(url, async (IRepository<Testimony> testimonyRepository) =>
+        app.MapGet(url, [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository) =>
         {
+            return await testimonyRepository.GetAllAsync();
+        });
+
+        app.MapPost(url, [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony) =>
+        {
+            await testimonyRepository.AddAsync(testimony);
             return true;
         });
 
-        app.MapPost(url, async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony) =>
+        app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony, int id) =>
         {
+            var testimonyToUpdate = await testimonyRepository.GetByIdAsync(id);
+            if (testimonyToUpdate == null) return false;
+
+            testimonyToUpdate.Pseudo = testimony.Pseudo;
+            testimonyToUpdate.Message = testimony.Message;
+
+            await testimonyRepository.UpdateAsync(testimonyToUpdate, id);
             return true;
         });
 
-        app.MapPut(url + "/{id}", async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony, int id) =>
+        app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository, int id) =>
         {
-            return true;
-        });
-
-        app.MapDelete(url + "/{id}", async (IRepository<Testimony> testimonyRepository, int id) =>
-        {
+            await testimonyRepository.DeleteAsync(id);
             return true;
         });
     }

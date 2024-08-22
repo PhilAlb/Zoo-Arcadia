@@ -7,6 +7,8 @@
 
 <!-- Carrousel d'images -->
 
+<!-- 
+
 <section id="carousel" class="my-5">
   <div
     class="carousel slide"
@@ -26,11 +28,11 @@
     </ul>
     <div class="carousel-inner">
       @for (carousel of carouselLayout; track $index){
-      <app-carousel
+      <app-carousel-animals
         [carouselImage]="apiUrl + '/' + carousel.url"
         [animalName]="carousel.animalName"
         [isFirst]="$index == 0"
-      ></app-carousel>
+      ></app-carousel-animals>
       }
     </div>
     <button
@@ -52,18 +54,20 @@
   </div>
 </section>
 
+-->
+
 <!-- Habitats -->
 
 <section class="container my-5">
   <h2 class="text-center mb-4">Nos habitats</h2>
   <div class="row">
     @for (card of cardHabitatLayout; track $index){
-    <app-card-h-s
+    <app-card-model
       [cardImage]="apiUrl + '/' + card.url"
       [cardTitle]="card.title"
       [index]="$index"
       [verticalPosition]="card.verticalPosition"
-    ></app-card-h-s>
+    ></app-card-model>
     }
   </div>
 </section>
@@ -74,19 +78,19 @@
   <h2 class="text-center mb-4">Nos services</h2>
   <div class="row">
     @for (card of cardServiceLayout; track $index){
-    <app-card-h-s
+    <app-card-model
       [cardImage]="apiUrl + '/' + card.url"
       [cardTitle]="card.title"
       [index]="$index"
       [verticalPosition]="card.verticalPosition"
-    ></app-card-h-s>
+    ></app-card-model>
     }
   </div>
 </section>
 
 <!-- Cartes témoignages -->
 
-<section class="container my-5">
+<!-- <section class="container my-5">
   <h2 class="text-center mb-4">Témoignages de nos visiteurs</h2>
   <div class="row">
     <div class="d-flex card-testimonies">
@@ -112,3 +116,6 @@
     </div>
   </div>
 </section>
+-->
+
+<app-testimony-modal></app-testimony-modal>

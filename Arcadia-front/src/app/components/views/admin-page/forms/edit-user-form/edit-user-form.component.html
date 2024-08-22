@@ -1,0 +1,105 @@
+<div
+  class="modal fade"
+  [attr.id]="'editUser' + selectedUser.id"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="modalTitle">
+          Modifier un Utilisateur
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm" (submit)="save()">
+          <div>
+            <div class="mb-3">
+              <label for="surname" class="form-label form-item-title"
+                >Nom</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="surname"
+                [formControlName]="formControls.surname"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label form-item-title">Nom</label>
+              <input
+                class="form-control"
+                id="name"
+                [formControlName]="formControls.name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="mailAddress" class="form-label form-item-title"
+                >Adresse mail</label
+              >
+              <input
+                class="form-control"
+                id="mailAddress"
+                type="email"
+                [formControlName]="formControls.mailAddress"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label form-item-title"
+                >Mot de passe</label
+              >
+              <input
+                class="form-control"
+                id="password"
+                type="password"
+                [minLength]="6"
+                [formControlName]="formControls.password"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="role" class="form-label form-item-title"
+                >Administrateur ?</label
+              >
+              <input
+                type="checkbox"
+                id="role"
+                class="role-checkbox"
+                [formControlName]="formControls.isAdmin"
+              />
+            </div>
+
+            <div
+              class="modal-footer custom-modal-footer d-flex justify-content-center"
+            >
+              <button
+                type="button"
+                class="btn btn-cancel"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#editUser' + selectedUser.id"
+              >
+                Fermer
+              </button>
+              <button
+                [disabled]="editForm.invalid"
+                type="submit"
+                class="btn btn-submit"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#editUser' + selectedUser.id"
+              >
+                Modifier
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardHSComponent } from './card-h-s.component';
+import { AddUserFormComponent } from './add-user-form.component';
 
-describe('CardHSComponent', () => {
-  let component: CardHSComponent;
-  let fixture: ComponentFixture<CardHSComponent>;
+describe('AddUserFormComponent', () => {
+  let component: AddUserFormComponent;
+  let fixture: ComponentFixture<AddUserFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardHSComponent]
+      imports: [AddUserFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CardHSComponent);
+    fixture = TestBed.createComponent(AddUserFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

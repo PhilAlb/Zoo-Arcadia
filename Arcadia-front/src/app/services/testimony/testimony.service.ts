@@ -2,30 +2,35 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environment';
-import { Testimony } from '../../interfaces/testimony';
+import { TestimonyDto } from '../../interfaces/testimony';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TestimonyService {
   private readonly _url = `${environment.apiUrl}/admin/testimonies`;
 
   constructor(private http: HttpClient) {}
 
-  getTestimonies(): Observable<Testimony[]> {
-    return this.http.get<Testimony[]>(this._url);
+  getTestimonies(): Observable<TestimonyDto[]> {
+    return this.http.get<TestimonyDto[]>(this._url, { withCredentials: true });
   }
 
-  addTestimony(testimony: Testimony): Observable<boolean> {
-    return this.http.post<boolean>(this._url, testimony);
+  addTestimony(testimony: TestimonyDto): Observable<boolean> {
+    return this.http.post<boolean>(this._url, testimony, {
+      withCredentials: true,
+    });
   }
 
-  updateTestimony(testimony: Testimony): Observable<boolean> {
-    return this.http.put<boolean>(`${this._url}/${testimony.id}`, testimony);
+  updateTestimony(testimony: TestimonyDto): Observable<boolean> {
+    return this.http.put<boolean>(`${this._url}/${testimony.id}`, testimony, {
+      withCredentials: true,
+    });
   }
 
   deleteTestimony(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this._url}/${id}`);
+    return this.http.delete<boolean>(`${this._url}/${id}`, {
+      withCredentials: true,
+    });
   }
-
 }

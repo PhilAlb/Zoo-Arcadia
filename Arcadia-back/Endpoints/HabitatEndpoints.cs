@@ -1,5 +1,6 @@
 using Arcadia_back.Repositories;
 using ArcadiaBack;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 public static class HabitatEndpoints
@@ -8,7 +9,7 @@ public static class HabitatEndpoints
 
     public static void MapHabitatEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet(url, async (IRepository<Habitat> habitatRepository) =>
+        app.MapGet(url, [Authorize(Roles = "Admin")] async (IRepository<Habitat> habitatRepository) =>
         {
             var habitats = await habitatRepository.GetAllAsync();
             var habitatDto = new List<HabitatDto>();
@@ -27,7 +28,7 @@ public static class HabitatEndpoints
             return habitatDto;
         });
 
-        app.MapPost(url, async (IRepository<Habitat> habitatRepository, [FromForm] HabitatDto habitatDto) =>
+        app.MapPost(url, [Authorize(Roles = "Admin")] async (IRepository<Habitat> habitatRepository, [FromForm] HabitatDto habitatDto) =>
         {
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "assets/images/habitats");
             if (!Directory.Exists(uploadPath))
@@ -59,7 +60,7 @@ public static class HabitatEndpoints
             return true;
         }).DisableAntiforgery();
 
-        app.MapPut(url + "/{id}", async (IRepository<Habitat> habitatRepository, [FromBody] HabitatDto habitat, int id) =>
+        app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Habitat> habitatRepository, [FromBody] HabitatDto habitat, int id) =>
         {
             var habitatToUpdate = await habitatRepository.GetByIdAsync(id);
             if (habitatToUpdate == null) return false;
@@ -71,7 +72,7 @@ public static class HabitatEndpoints
             return true;
         });
 
-        app.MapDelete(url + "/{id}", async (IRepository<Habitat> habitatRepository, int id) =>
+        app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Habitat> habitatRepository, int id) =>
         {
             await habitatRepository.DeleteAsync(id);
             return true;

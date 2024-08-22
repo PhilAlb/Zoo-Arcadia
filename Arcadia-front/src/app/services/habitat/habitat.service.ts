@@ -13,24 +13,28 @@ export class HabitatService {
   constructor(private http: HttpClient) {}
 
   getHabitats(): Observable<HabitatDto[]> {
-    return this.http.get<HabitatDto[]>(this._url);
+    return this.http.get<HabitatDto[]>(this._url, { withCredentials: true });
   }
 
   addHabitat(habitat: HabitatDto): Observable<boolean> {
-    let h = new FormData()
-    
+    let h = new FormData();
+
     h.append('title', habitat.title);
     h.append('description', habitat.description);
-    if(habitat.image) h.append('image', habitat.image);
+    if (habitat.image) h.append('image', habitat.image);
 
-    return this.http.post<boolean>(this._url, h);
+    return this.http.post<boolean>(this._url, h, { withCredentials: true });
   }
 
   updateHabitat(habitat: HabitatDto): Observable<boolean> {
-    return this.http.put<boolean>(`${this._url}/${habitat.id}`, habitat);
+    return this.http.put<boolean>(`${this._url}/${habitat.id}`, habitat, {
+      withCredentials: true,
+    });
   }
 
   deleteHabitat(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this._url}/${id}`);
+    return this.http.delete<boolean>(`${this._url}/${id}`, {
+      withCredentials: true,
+    });
   }
 }

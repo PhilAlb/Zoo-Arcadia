@@ -1,0 +1,41 @@
+<section class="my-5">
+    <div
+      class="carousel slide"
+      id="carousel-interface"
+      data-bs-ride="carousel"
+      [attr.data-bs-interval]="interval"
+    >
+      <ul class="carousel-indicators">
+        <li
+          *ngFor="let item of items; let i = index"
+          data-bs-target="#carousel-presentation"
+          [attr.data-bs-slide-to]="i"
+          [ngClass]="{ 'active': i === 0 }"
+        ></li>
+      </ul>
+      <div class="carousel-inner">
+        <ng-container *ngFor="let item of items; let i = index">
+          <ng-container
+            *ngTemplateOutlet="slideTemplate; context: { $implicit: item, index: i, isFirst: i === 0 }"
+          ></ng-container>
+        </ng-container>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carousel-interface"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carousel-interface"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </section>
+  

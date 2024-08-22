@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-card-h-s',
+  selector: 'app-card-model',
   standalone: true,
   imports: [ CommonModule ],
-  templateUrl: './card-h-s.component.html',
-  styleUrl: './card-h-s.component.scss'
+  templateUrl: './card-model.component.html',
+  styleUrl: './card-model.scss'
 })
-export class CardHSComponent {
+export class CardModelComponent {
   @Input() cardImage: string="";
   @Input() cardTitle: string="";
   @Input() index: number=0;

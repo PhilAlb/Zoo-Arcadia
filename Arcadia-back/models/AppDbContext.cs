@@ -1,9 +1,11 @@
 ﻿using ArcadiaBack;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Arcadia_back.models
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User>
     {
         private readonly IConfiguration _configuration;
 
@@ -35,6 +37,62 @@ namespace Arcadia_back.models
             GenerateHabitatSeed(modelBuilder);
             GenerateServiceSeed(modelBuilder);
             GenerateTestimonySeed(modelBuilder);
+            GenerateAdminUserSeed(modelBuilder);
+        }
+
+        private void GenerateAdminUserSeed(ModelBuilder modelBuilder)
+        {
+            // Seed roles
+            var adminRoleId = "0";
+            var adminUserId = Guid.NewGuid().ToString();
+
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = adminRoleId,
+                    Name = Role.Admin.ToString(),
+                    NormalizedName = Role.Admin.ToString().ToUpper(),
+                },
+                new IdentityRole
+                {
+                    Id = "1",
+                    Name = Role.User.ToString(),
+                    NormalizedName = Role.User.ToString().ToUpper(),
+                }
+            );
+
+            // Seed the admin user
+            var hasher = new PasswordHasher<User>();
+            var mail = "admin@mail.com";
+            var user = new User()
+            {
+                Id = adminUserId,
+                Name = "Admin",
+                Surname = "Test",
+                UserName = mail,
+                NormalizedUserName = mail.ToUpper(),
+                Email = mail,
+                NormalizedEmail = mail.ToUpper(),
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                AccessFailedCount = 0,
+                LockoutEnabled = false,
+                TwoFactorEnabled = false,
+            };
+            user.PasswordHash = hasher.HashPassword(user, "Admin0001");
+
+            modelBuilder.Entity<User>().HasData(user);
+
+            // Assign admin user to admin role
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+                new IdentityUserRole<string>
+                {
+                    UserId = adminUserId,
+                    RoleId = adminRoleId
+                }
+            );
         }
 
         private void GenerateAnimalSeeed(ModelBuilder modelBuilder)
@@ -52,7 +110,7 @@ namespace Arcadia_back.models
                 {
                     Id = 2,
                     ImageUrl = "assets/images/animals/tiger1.jpg",
-                    Name = "tiger-image",
+                    Name = "tiger",
                     Race = "Unknown",
                     AssociatedHabitatId = 1,
                 },
@@ -60,7 +118,7 @@ namespace Arcadia_back.models
                 {
                     Id = 3,
                     ImageUrl = "assets/images/animals/monkey1.jpg",
-                    Name = "monkey-image",
+                    Name = "monkey",
                     Race = "Unknown",
                     AssociatedHabitatId = 1,
                 },
@@ -68,14 +126,14 @@ namespace Arcadia_back.models
                 {
                     Id = 4,
                     ImageUrl = "assets/images/animals/panda1.jpg",
-                    Name = "panda-image",
+                    Name = "panda",
                     Race = "Unknown",
                     AssociatedHabitatId = 1,
                 }, new()
                 {
                     Id = 5,
                     ImageUrl = "assets/animals/outter1.jpg",
-                    Name = "outter-image",
+                    Name = "outter",
                     Race = "Unknown",
                     AssociatedHabitatId = 1,
                 });

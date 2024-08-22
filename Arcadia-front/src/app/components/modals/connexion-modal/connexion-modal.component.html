@@ -1,32 +1,75 @@
 <!-- Bouton connexion -->
-<button type="button" class="btn btn-connexion" data-bs-toggle="modal" data-bs-target="#connexionModal">
-    Connexion
+@if (!isUserLoggedIn){
+<button
+  type="button"
+  class="btn btn-connexion"
+  data-bs-toggle="modal"
+  data-bs-target="#connexionModal"
+>
+  Connexion
 </button>
+}@else {
+<button type="button" class="btn btn-connexion" (click)="logout()">
+  Déconnexion
+</button>
+}
 
 <!-- Modale -->
-<div class="modal fade" id="connexionModal" tabindex="-1" role="dialog" aria-labelledby="connexionModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content custom-modal">
-        <div class="modal-header custom-modal-header">
-          <h5 class="modal-title w-100 text-center" id="modalTitle">Connexion</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body custom-modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Mot de passe</label>
-              <input type="password" class="form-control" id="password">
-            </div>
-            <div class="modal-footer d-flex justify-content-center custom-modal-footer">
-              <button type="submit" class="btn btn-submit">Se connecter</button>
-            </div>
-          </form>
-        </div>
+<div
+  class="modal fade"
+  id="connexionModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="connexionModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content custom-modal">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title w-100 text-center" id="modalTitle">Connexion</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body custom-modal-body">
+        <form [formGroup]="loginForm" (submit)="login()">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              [formControlName]="formControls.email"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input
+              type="password"
+              [minlength]="6"
+              class="form-control"
+              id="password"
+              [formControlName]="formControls.password"
+            />
+          </div>
+          <div
+            class="modal-footer d-flex justify-content-center custom-modal-footer"
+          >
+            <button
+              [disabled]="loginForm.invalid"
+              type="submit"
+              class="btn btn-submit"
+              data-bs-toggle="modal"
+              data-bs-target="#connexionModal"
+            >
+              Se connecter
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>

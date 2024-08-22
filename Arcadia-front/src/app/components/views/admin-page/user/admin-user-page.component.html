@@ -1,2 +1,62 @@
 <h3>Liste des Utilisateurs</h3>
 
+<button
+  type="button"
+  class="btn btn-primary add-button"
+  data-bs-toggle="modal"
+  data-bs-target="#addUser"
+>
+  Ajouter un nouvel élément
+</button>
+<app-add-user-form (onSubmit)="add($event)"></app-add-user-form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Adresse mail</th>
+      <th scope="col">Rôle</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(element of list; track $index) {
+    <tr>
+      <td scope="row">{{ $index + 1 }}</td>
+      <td>{{ element.surname }}</td>
+      <td>{{ element.name }}</td>
+      <td>{{ element.email }}</td>
+      <td>{{ roleEnum[element.role] }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-link edit-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#editUser' + element.id"
+        >
+          Editer
+        </button>
+        <app-edit-user-form
+          [selectedUser]="element"
+          (onSubmit)="edit($event)"
+        ></app-edit-user-form>
+
+        <button
+          type="button"
+          class="btn btn-link delete-button"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#confirmationModal' + element.id"
+        >
+          Supprimer
+        </button>
+        <app-confirmation-modal
+          [id]="element.id"
+          (confirmationSent)="delete(element.id ?? 0)"
+        ></app-confirmation-modal>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
