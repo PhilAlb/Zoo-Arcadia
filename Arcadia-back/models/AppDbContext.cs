@@ -63,7 +63,7 @@ namespace Arcadia_back.models
 
             // Seed the admin user
             var hasher = new PasswordHasher<User>();
-            var mail = "admin@mail.com";
+            var mail = "admin@zoo-arcadia.com";
             var user = new User()
             {
                 Id = adminUserId,
