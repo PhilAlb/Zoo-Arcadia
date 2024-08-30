@@ -110,7 +110,7 @@ namespace Arcadia_back.models
                 {
                     Id = 2,
                     ImageUrl = "assets/images/animals/tiger1.jpg",
-                    Name = "Sherkan",
+                    Name = "Shere Khan",
                     Race = "Tigre",
                     AssociatedHabitatId = 2,
                 },
@@ -132,7 +132,7 @@ namespace Arcadia_back.models
                 }, new()
                 {
                     Id = 5,
-                    ImageUrl = "assets/animals/outter1.jpg",
+                    ImageUrl = "assets/images/animals/outter1.jpg",
                     Name = "Angèle",
                     Race = "Loutre",
                     AssociatedHabitatId = 3,
