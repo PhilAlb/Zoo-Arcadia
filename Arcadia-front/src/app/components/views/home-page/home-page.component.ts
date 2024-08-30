@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ICarouselAnimalsLayout } from '../../../interfaces/carouselAnimalsLayout/ICarouselAnimalsLayout';
-import { CarouselAnimalsComponent } from '../../carousels/carousel-model/animals/carousel-animals.component';
+import { CarouselAnimalsComponent } from '../../carousels/carousel-animals/carousel-animals.component';
 import { ICardTestimonyLayout } from '../../../interfaces/cardLayout/cardTestimonyLayout/ICardTestimonyLayout';
 import { ArcadiaService } from '../../../services/arcadia/arcadia.service';
 import { ICardServicesLayout } from '../../../interfaces/cardLayout/cardServicesLayout/ICardServicesLayout';
@@ -44,9 +44,12 @@ export class HomePageComponent implements OnInit {
       .getAllServices()
       .subscribe((data: ICardServicesLayout[]) => (this.cardServiceLayout = data));
 
-    this.service
+         this.service
       .getCarouselAnimals()
-      .subscribe((data: ICarouselAnimalsLayout[]) => (this.carouselAnimalsLayout = data));
+      .subscribe((data: ICarouselAnimalsLayout[]) => {
+this.carouselLayout = data;
+ console.log(data);
+});
 
     this.service
       .getTestimonies()
