@@ -102,40 +102,40 @@ namespace Arcadia_back.models
                 {
                     Id = 1,
                     ImageUrl = "assets/images/animals/lion1.jpg",
-                    Name = "lion",
-                    Race = "Unknown",
+                    Name = "Mufasa",
+                    Race = "Lion",
                     AssociatedHabitatId = 1
                 },
                 new()
                 {
                     Id = 2,
                     ImageUrl = "assets/images/animals/tiger1.jpg",
-                    Name = "tiger",
-                    Race = "Unknown",
-                    AssociatedHabitatId = 1,
+                    Name = "Sherkan",
+                    Race = "Tigre",
+                    AssociatedHabitatId = 2,
                 },
                 new()
                 {
                     Id = 3,
                     ImageUrl = "assets/images/animals/monkey1.jpg",
-                    Name = "monkey",
-                    Race = "Unknown",
-                    AssociatedHabitatId = 1,
+                    Name = "Louis",
+                    Race = "Singe",
+                    AssociatedHabitatId = 2,
                 },
                 new()
                 {
                     Id = 4,
                     ImageUrl = "assets/images/animals/panda1.jpg",
-                    Name = "panda",
-                    Race = "Unknown",
+                    Name = "Po",
+                    Race = "Panda",
                     AssociatedHabitatId = 1,
                 }, new()
                 {
                     Id = 5,
                     ImageUrl = "assets/animals/outter1.jpg",
-                    Name = "outter",
-                    Race = "Unknown",
-                    AssociatedHabitatId = 1,
+                    Name = "Angèle",
+                    Race = "Loutre",
+                    AssociatedHabitatId = 3,
                 });
         }
 
