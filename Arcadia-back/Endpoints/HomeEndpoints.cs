@@ -24,7 +24,7 @@ public static class HomeEndpoints
             };
 
             return habitatsDto;
-        });
+        }).WithTags("Homepage");
 
         app.MapGet("/animals", async (IRepository<Animal> animalRepository) =>
         {
@@ -41,7 +41,7 @@ public static class HomeEndpoints
             };
 
             return animalsDto;
-        });
+        }).WithTags("Homepage");
 
         app.MapGet("/services", async (IRepository<Service> serviceRepository) =>
         {
@@ -61,7 +61,7 @@ public static class HomeEndpoints
             };
 
             return servicesDto;
-        });
+        }).WithTags("Homepage");
 
         app.MapGet("/testimonies", async (IRepository<Testimony> testimonyRepository) =>
         {
@@ -78,15 +78,22 @@ public static class HomeEndpoints
                     Message = testimony.Message,
                 });
             };
-            
+
             return testimonyDtos;
-        });
+        }).WithTags("Homepage");
 
         app.MapPost("/testimonies", async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony) =>
         {
             testimony.IsValidated = false;
             await testimonyRepository.AddAsync(testimony);
             return true;
-        });
+        }).WithTags("Homepage");
+
+        app.MapPost("/contacts", async (IRepository<Contact> contactRepository, [FromBody] Contact contact) =>
+        {
+            await contactRepository.AddAsync(contact);
+
+            return true;
+        }).WithTags("Homepage");
     }
 }

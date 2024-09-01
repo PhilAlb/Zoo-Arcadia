@@ -10,6 +10,7 @@ import { HomePageComponent } from './components/views/home-page/home-page.compon
 import { ServicesPageComponent } from './components/views/services-page/services-page.component';
 import { RoleGuard } from './guards/role-guard';
 import { Role } from './interfaces/user';
+import { AdminContactPageComponent } from './components/views/admin-page/contact/admin-contact-page.component';
 
 export enum RouteLinks {
   Home = 'home',
@@ -23,7 +24,6 @@ export enum RouteLinks {
 }
 
 export const routes: Routes = [
-  { path: RouteLinks.Home, component: HomePageComponent },
   { path: RouteLinks.Services, component: ServicesPageComponent },
   { path: RouteLinks.Habitats, component: HabitatsPageComponent },
   { path: RouteLinks.Contact, component: HomePageComponent },
@@ -50,11 +50,15 @@ export const routes: Routes = [
         component: AdminTestimonyPageComponent,
       },
       {
+        path: RouteLinks.Contact,
+        component: AdminContactPageComponent,
+      },
+      {
         path: RouteLinks.Users,
         component: AdminUserPageComponent,
       },
     ],
   },
+  { path: RouteLinks.Home, component: HomePageComponent },
   { path: '', redirectTo: RouteLinks.Home, pathMatch: 'full' },
-  { path: '**', redirectTo: RouteLinks.Home, pathMatch: 'full' },
 ];

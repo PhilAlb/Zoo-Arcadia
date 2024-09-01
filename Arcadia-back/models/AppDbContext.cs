@@ -21,10 +21,18 @@ namespace Arcadia_back.models
         public DbSet<User> Users { get; set; }
         public DbSet<Testimony> Testimonies { get; set; }
         public DbSet<Habitat> Habitats { get; set; }
-
+        public DbSet<Contact> Contacts { get; set; }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Value"));
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            {
+                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Value"));
+            }
+            else
+            {
+                optionsBuilder.UseInMemoryDatabase("Arcadia_Database");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

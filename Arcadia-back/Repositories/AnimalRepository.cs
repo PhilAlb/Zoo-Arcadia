@@ -12,6 +12,7 @@ namespace Arcadia_back.Repositories
         : base(dbContext)
         {
             _dbContext = dbContext;
+            _dbContext.Database.EnsureCreated();
         }
 
         public override async Task<IEnumerable<Animal>> GetAllAsync()

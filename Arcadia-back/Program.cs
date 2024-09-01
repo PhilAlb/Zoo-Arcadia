@@ -14,7 +14,16 @@ builder.Services.AddSwaggerGen();
 
 // Connection to Database
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(configuration.GetConnectionString("Value")));
+{
+    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+    {
+        options.UseSqlServer(configuration.GetConnectionString("Value"));
+    }
+    else
+    {
+        options.UseInMemoryDatabase("Arcadia_Database");
+    }
+});
 
 // User Identity configuration     
 builder.Services.AddIdentity<User, IdentityRole>(
@@ -66,11 +75,8 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors("AllowSpecificOrigin");
 
@@ -106,6 +112,7 @@ app.MapAnimalEndpoints();
 app.MapHabitatEndpoints();
 app.MapServiceEndpoints();
 app.MapTestimonyEndpoints();
+app.MapContactEndpoints();
 app.MapUserEndpoints();
 
 app.Run();

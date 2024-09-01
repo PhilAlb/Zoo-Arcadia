@@ -27,7 +27,7 @@ public static class AnimalEndpoints
             }
 
             return animalDtos;
-        });
+        }).WithTags("Admin - Animals");
 
         app.MapPost(url, [Authorize(Roles = "Admin")] async (IAnimalRepository animalRepository, [FromForm] AnimalDto animalDto) =>
         {
@@ -59,7 +59,9 @@ public static class AnimalEndpoints
             await animalRepository.AddAsync(animal);
 
             return true;
-        }).DisableAntiforgery();
+        })
+        .DisableAntiforgery()
+        .WithTags("Admin - Animals");
 
         app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IAnimalRepository animalRepository, [FromBody] AnimalDto animal, int id) =>
         {
@@ -72,12 +74,12 @@ public static class AnimalEndpoints
 
             await animalRepository.UpdateAsync(animalToUpdate, id);
             return true;
-        });
+        }).WithTags("Admin - Animals");
 
         app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IAnimalRepository animalRepository, int id) =>
         {
             await animalRepository.DeleteAsync(id);
             return true;
-        });
+        }).WithTags("Admin - Animals");
     }
 }

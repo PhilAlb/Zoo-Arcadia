@@ -12,13 +12,13 @@ public static class TestimonyEndpoints
         app.MapGet(url, [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository) =>
         {
             return await testimonyRepository.GetAllAsync(); 
-        });
+        }).WithTags("Admin - Testimonies");
 
         app.MapPost(url, [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony) =>
         {
             await testimonyRepository.AddAsync(testimony);
             return true;
-        });
+        }).WithTags("Admin - Testimonies");
 
         app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony, int id) =>
         {
@@ -31,12 +31,12 @@ public static class TestimonyEndpoints
 
             await testimonyRepository.UpdateAsync(testimonyToUpdate, id);
             return true;
-        });
+        }).WithTags("Admin - Testimonies");
 
         app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository, int id) =>
         {
             await testimonyRepository.DeleteAsync(id);
             return true;
-        });
+        }).WithTags("Admin - Testimonies");
     }
 }

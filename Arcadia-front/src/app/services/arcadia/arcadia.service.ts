@@ -6,6 +6,7 @@ import { ICardHabitatsLayout } from '../../interfaces/cardLayout/cardHabitatsLay
 import { ICardServicesLayout } from '../../interfaces/cardLayout/cardServicesLayout/ICardServicesLayout';
 import { ICardTestimonyLayout } from '../../interfaces/cardLayout/cardTestimonyLayout/ICardTestimonyLayout';
 import { ICarouselAnimalsLayout } from '../../interfaces/carouselAnimalsLayout/ICarouselAnimalsLayout';
+import { Contact } from '../../interfaces/contact';
 
 @Injectable({
   providedIn: 'root',
@@ -32,5 +33,9 @@ export class ArcadiaService {
 
   addTestimonies(testimony: ICardTestimonyLayout): Observable<boolean> {
     return this.http.post<boolean>(this._url + '/testimonies', testimony);
+  }
+
+  addContacts(contact: Contact): Observable<boolean> {
+    return this.http.post<boolean>(this._url + '/contacts', contact);
   }
 }

@@ -16,7 +16,8 @@ public static class ServiceEndpoints
 
             foreach (var s in services)
             {
-                serviceDto.Add(new ServiceDto(){
+                serviceDto.Add(new ServiceDto()
+                {
                     Id = s.Id,
                     Title = s.Title,
                     Description = s.Description,
@@ -26,7 +27,7 @@ public static class ServiceEndpoints
             }
 
             return serviceDto;
-        });
+        }).WithTags("Admin - Services");
 
         app.MapPost(url, [Authorize(Roles = "Admin")] async (IRepository<Service> serviceRepository, [FromForm] ServiceDto serviceDto) =>
         {
@@ -58,7 +59,7 @@ public static class ServiceEndpoints
 
             await serviceRepository.AddAsync(service);
             return true;
-        }).DisableAntiforgery();
+        }).DisableAntiforgery().WithTags("Admin - Services");
 
         app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Service> serviceRepository, [FromBody] Service serviceDto, int id) =>
         {
@@ -71,12 +72,12 @@ public static class ServiceEndpoints
 
             await serviceRepository.UpdateAsync(serviceToUpdate, id);
             return true;
-        });
+        }).WithTags("Admin - Services");
 
         app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Service> serviceRepository, int id) =>
         {
             await serviceRepository.DeleteAsync(id);
             return true;
-        });
+        }).WithTags("Admin - Services");
     }
 }

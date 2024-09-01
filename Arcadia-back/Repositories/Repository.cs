@@ -11,6 +11,7 @@ namespace Arcadia_back.Repositories
         public Repository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
+            _dbContext.Database.EnsureCreated();
         }
 
         public virtual async Task<IEnumerable<T>> GetAllAsync()

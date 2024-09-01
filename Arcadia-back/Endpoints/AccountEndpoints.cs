@@ -11,13 +11,13 @@ public static class AccountEndpoints
         {
             var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
             return result.Succeeded;
-        });
+        }).WithTags("Account");
 
         app.MapPost("/logout", [Authorize] async (HttpContext context, SignInManager<User> signInManager) =>
         {
             await signInManager.SignOutAsync();
             return true;
-        });
+        }).WithTags("Account");
 
         app.MapGet("/isAuthenticated", (HttpContext context) =>
         {
@@ -31,6 +31,6 @@ public static class AccountEndpoints
             }
 
             return new { IsAuthenticated = false, Role = "" };
-        });
+        }).WithTags("Account");
     }
 }

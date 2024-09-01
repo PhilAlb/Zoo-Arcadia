@@ -6,7 +6,7 @@ import { ICardTestimonyLayout } from '../../../interfaces/cardLayout/cardTestimo
 import { ArcadiaService } from '../../../services/arcadia/arcadia.service';
 import { ICardServicesLayout } from '../../../interfaces/cardLayout/cardServicesLayout/ICardServicesLayout';
 import { ICardHabitatsLayout } from '../../../interfaces/cardLayout/cardHabitatsLayout/ICardHabitatsLayout';
-import { TestimonyModalComponent } from "../../modals/testimony-modal/testimony-modal.component";
+import { TestimonyModalComponent } from '../../modals/testimony-modal/testimony-modal.component';
 import { environment } from '../../../../../environment';
 import { CardTestimonyComponent } from '../../cards/card-model/card-testimony/card-testimony.component';
 import { CardModelComponent } from '../../cards/card-model/card-model.component';
@@ -19,8 +19,8 @@ import { CardModelComponent } from '../../cards/card-model/card-model.component'
     CardModelComponent,
     CarouselAnimalsComponent,
     CardTestimonyComponent,
-    TestimonyModalComponent
-],
+    TestimonyModalComponent,
+  ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -38,18 +38,21 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.service
       .getAllHabitats()
-      .subscribe((data: ICardHabitatsLayout[]) => (this.cardHabitatLayout = data));
+      .subscribe(
+        (data: ICardHabitatsLayout[]) => (this.cardHabitatLayout = data)
+      );
 
     this.service
       .getAllServices()
-      .subscribe((data: ICardServicesLayout[]) => (this.cardServiceLayout = data));
+      .subscribe(
+        (data: ICardServicesLayout[]) => (this.cardServiceLayout = data)
+      );
 
-         this.service
+    this.service
       .getCarouselAnimals()
-      .subscribe((data: ICarouselAnimalsLayout[]) => {
-this.carouselLayout = data;
- console.log(data);
-});
+      .subscribe(
+        (data: ICarouselAnimalsLayout[]) => (this.carouselLayout = data)
+      );
 
     this.service
       .getTestimonies()

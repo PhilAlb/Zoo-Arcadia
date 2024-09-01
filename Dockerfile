@@ -1,22 +1,4 @@
-# Stage 1: Build the Angular frontend
-FROM node:18 AS frontend-build
-
-# Set working directory
-WORKDIR /app/frontend
-
-# Copy package.json and package-lock.json files
-COPY ./Arcadia-front/package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the Angular app's files
-COPY ./Arcadia-front/ ./
-
-# Build the Angular app
-RUN npm run build --prod
-
-# Stage 2: Build the .NET backend
+# Build the .NET backend
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS backend-build
 
 # Set working directory
@@ -40,12 +22,10 @@ WORKDIR /app
 
 # Copy the published backend files
 COPY --from=backend-build /app/out ./
-
-# Copy the Angular build output to the backend's static files directory
-COPY --from=frontend-build /app/frontend/dist/arcadia-front ./wwwroot
+COPY ./Arcadia-back/assets ./assets
 
 # Expose the port that your application will run on
-EXPOSE 80
+EXPOSE 8080
 
 # Set the entry point to run your .NET application
 ENTRYPOINT ["dotnet", "Arcadia-back.dll"]

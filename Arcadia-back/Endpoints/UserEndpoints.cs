@@ -31,7 +31,7 @@ public static class UserEndpoints
             }
 
             return userDtos;
-        });
+        }).WithTags("Admin - Users");
 
         app.MapPost(url, [Authorize(Roles = "Admin")] async (SignInManager<User> signInManager, UserManager<User> userManager, [FromBody] UserDto userDto) =>
         {
@@ -55,7 +55,7 @@ public static class UserEndpoints
             }
 
             return false;
-        });
+        }).WithTags("Admin - Users");
 
         app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<User> userRepository, UserManager<User> userManager, [FromBody] UserDto userDto, string id) =>
         {
@@ -84,12 +84,12 @@ public static class UserEndpoints
 
             await userRepository.UpdateAsync(userToUpdate, id);
             return true;
-        });
+        }).WithTags("Admin - Users");
 
         app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<User> userRepository, string id) =>
         {
             await userRepository.DeleteAsync(id);
             return true;
-        });
+        }).WithTags("Admin - Users");
     }
 }

@@ -26,7 +26,7 @@ public static class HabitatEndpoints
             }
 
             return habitatDto;
-        });
+        }).WithTags("Admin - Habitats");
 
         app.MapPost(url, [Authorize(Roles = "Admin")] async (IRepository<Habitat> habitatRepository, [FromForm] HabitatDto habitatDto) =>
         {
@@ -58,7 +58,7 @@ public static class HabitatEndpoints
 
             await habitatRepository.AddAsync(habitat);
             return true;
-        }).DisableAntiforgery();
+        }).DisableAntiforgery().WithTags("Admin - Habitats");
 
         app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Habitat> habitatRepository, [FromBody] HabitatDto habitat, int id) =>
         {
@@ -70,12 +70,12 @@ public static class HabitatEndpoints
 
             await habitatRepository.UpdateAsync(habitatToUpdate, id);
             return true;
-        });
+        }).WithTags("Admin - Habitats");
 
         app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Habitat> habitatRepository, int id) =>
         {
             await habitatRepository.DeleteAsync(id);
             return true;
-        });
+        }).WithTags("Admin - Habitats");
     }
 }
