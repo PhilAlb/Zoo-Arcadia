@@ -1,5 +1,5 @@
 <div class="container my-5">
-  <!-- Header -->
+  <!-- Header du tableau -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 class="mb-0">Liste des Animaux</h3>
     <button
@@ -12,14 +12,14 @@
     </button>
   </div>
 
-  <!-- Modal Form for Adding an Animal -->
+  <!-- Modale d'ajout -->
   <app-add-animal-form (onSubmit)="add($event)"></app-add-animal-form>
 
-  <!-- Animal List Table -->
+  <!-- Tableau animaux -->
   <div class="card shadow-sm">
     <div class="card-body p-0">
       <table class="table table-hover mb-0">
-        <thead class="table-primary">
+        <thead class="table-custom-header">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
@@ -36,7 +36,7 @@
             <td>{{ element.race }}</td>
             <td>{{ element.associatedHabitatTitle }}</td>
             <td class="text-end">
-              <!-- Edit Button -->
+              <!-- Boutton Editer -->
               <button
                 type="button"
                 class="btn btn-link p-0 text-primary"
@@ -50,7 +50,7 @@
                 (onSubmit)="edit($event)"
               ></app-edit-animal-form>
 
-              <!-- Delete Button -->
+              <!-- Boutton Supprimer -->
               <button
                 type="button"
                 class="btn btn-link p-0 text-danger ms-3"

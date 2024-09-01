@@ -66,9 +66,11 @@ public static class HomeEndpoints
         app.MapGet("/testimonies", async (IRepository<Testimony> testimonyRepository) =>
         {
             var testimonies = await testimonyRepository.GetAllAsync();
+            var onlyValidatedTestimonies = testimonies.Where(t => t.IsValidated).ToList();
+
             var testimonyDtos = new List<CardTestimonyDto>();
 
-            foreach (var testimony in testimonies)
+            foreach (var testimony in onlyValidatedTestimonies)
             {
                 testimonyDtos.Add(new CardTestimonyDto()
                 {
@@ -76,12 +78,13 @@ public static class HomeEndpoints
                     Message = testimony.Message,
                 });
             };
-
+            
             return testimonyDtos;
         });
 
         app.MapPost("/testimonies", async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony) =>
         {
+            testimony.IsValidated = false;
             await testimonyRepository.AddAsync(testimony);
             return true;
         });

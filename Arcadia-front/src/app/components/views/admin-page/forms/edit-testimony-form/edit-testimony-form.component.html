@@ -43,6 +43,18 @@
               ></textarea>
             </div>
 
+            <div class="mb-3">
+              <label for="validation" class="form-label form-item-title"
+                >Validé ?</label
+              >
+              <input
+                type="checkbox"
+                id="validation"
+                class="role-checkbox"
+                [formControlName]="formControls.isValidated"
+              />
+            </div>
+
             <div
               class="modal-footer custom-modal-footer d-flex justify-content-center"
             >

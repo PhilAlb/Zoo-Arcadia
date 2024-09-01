@@ -1,21 +1,27 @@
-<h3>Liste des Témoignages</h3>
+<div class="container my-5">
+  <!-- Header du tableau -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">Liste des Témoignages</h3>
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#addTestimony"
+    >
+      Ajouter un nouvel élément
+    </button>
+  </div>
 
-<button
-  type="button"
-  class="btn btn-primary add-button"
-  data-bs-toggle="modal"
-  data-bs-target="#addTestimony"
->
-  Ajouter un nouvel élément
-</button>
-<app-add-testimony-form (onSubmit)="add($event)"></app-add-testimony-form>
+  <!-- Modale d'ajout -->
+  <app-add-testimony-form (onSubmit)="add($event)"></app-add-testimony-form>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Pseudo</th>
       <th scope="col">Message</th>
+      <th scope="col">Pseudo</th>
+      <th scope="col">Validé?</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -25,6 +31,7 @@
       <td scope="row">{{ $index + 1 }}</td>
       <td>{{ element.pseudo }}</td>
       <td>{{ element.message }}</td>
+      <td>{{ element.isValidated ? "Oui" : "Non"}}</td>
       <td>
         <button
           type="button"
@@ -39,20 +46,24 @@
           (onSubmit)="edit($event)"
         ></app-edit-testimony-form>
 
-        <button
-          type="button"
-          class="btn btn-link delete-button"
-          data-bs-toggle="modal"
-          [attr.data-bs-target]="'#confirmationModal' + element.id"
-        >
-          Supprimer
-        </button>
-        <app-confirmation-modal
-          [id]="element.id"
-          (confirmationSent)="delete(element.id ?? 0)"
-        ></app-confirmation-modal>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+              <!-- Bouton Supprimer -->
+              <button
+                type="button"
+                class="btn btn-link p-0 text-danger ms-3"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#confirmationModal' + element.id"
+              >
+                Supprimer
+              </button>
+              <app-confirmation-modal
+                [id]="element.id"
+                (confirmationSent)="delete(element.id ?? 0)"
+              ></app-confirmation-modal>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,7 @@ export class EditTestimonyFormComponent implements OnInit {
   readonly formControls = {
     pseudo: 'pseudo',
     message: 'message',
+    isValidated: 'isValidated'
   };
 
   @Output() onSubmit = new EventEmitter<TestimonyDto>();
@@ -29,6 +30,7 @@ export class EditTestimonyFormComponent implements OnInit {
       [this.formControls.message]: new FormControl(this.selectedTestimony.message, {
         validators: Validators.compose([Validators.required]),
       }),
+      [this.formControls.isValidated]: new FormControl(this.selectedTestimony.isValidated),
     });
   }
   
@@ -39,6 +41,7 @@ export class EditTestimonyFormComponent implements OnInit {
       id: this.selectedTestimony.id,
       pseudo: get(this.formControls.pseudo).trim(),
       message: get(this.formControls.message).trim(),
+      isValidated: get(this.formControls.isValidated) ?? false
     };
 
     this.onSubmit.emit(testimony);

@@ -16,6 +16,11 @@
                             <label for="message" class="form-label form-item-title">Message</label>
                             <textarea class="form-control" id="message" [formControlName]="formControls.message"></textarea>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="validation" class="form-label form-item-title">Validé ?</label>
+                            <input type="checkbox" id="validation" class="role-checkbox" [formControlName]="formControls.isValidated">
+                        </div>
                        
                         <div class="modal-footer custom-modal-footer d-flex justify-content-center">
                             <button type="button" class="btn btn-cancel" data-bs-toggle="modal" data-bs-target="#addTestimony">Fermer</button>

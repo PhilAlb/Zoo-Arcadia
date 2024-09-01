@@ -4,6 +4,7 @@ using Arcadia_back.models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Arcadia_back.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240830150100_TestimonyValidation")]
+    partial class TestimonyValidation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,40 +60,40 @@ namespace Arcadia_back.Migrations
                             Id = 1,
                             AssociatedHabitatId = 1,
                             ImageUrl = "assets/images/animals/lion1.jpg",
-                            Name = "Mufasa",
-                            Race = "Lion"
+                            Name = "lion",
+                            Race = "Unknown"
                         },
                         new
                         {
                             Id = 2,
-                            AssociatedHabitatId = 2,
+                            AssociatedHabitatId = 1,
                             ImageUrl = "assets/images/animals/tiger1.jpg",
-                            Name = "Shere Khan",
-                            Race = "Tigre"
+                            Name = "tiger",
+                            Race = "Unknown"
                         },
                         new
                         {
                             Id = 3,
-                            AssociatedHabitatId = 2,
+                            AssociatedHabitatId = 1,
                             ImageUrl = "assets/images/animals/monkey1.jpg",
-                            Name = "Louis",
-                            Race = "Singe"
+                            Name = "monkey",
+                            Race = "Unknown"
                         },
                         new
                         {
                             Id = 4,
                             AssociatedHabitatId = 1,
                             ImageUrl = "assets/images/animals/panda1.jpg",
-                            Name = "Po",
-                            Race = "Panda"
+                            Name = "panda",
+                            Race = "Unknown"
                         },
                         new
                         {
                             Id = 5,
-                            AssociatedHabitatId = 3,
-                            ImageUrl = "assets/images/animals/outter1.jpg",
-                            Name = "Angèle",
-                            Race = "Loutre"
+                            AssociatedHabitatId = 1,
+                            ImageUrl = "assets/animals/outter1.jpg",
+                            Name = "outter",
+                            Race = "Unknown"
                         });
                 });
 
@@ -359,21 +362,21 @@ namespace Arcadia_back.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "98e31e9c-89f0-4597-ab19-76f5bde8b5cd",
+                            Id = "4fcfc12c-6809-49f4-8d61-90c7a4c1cc0f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4cd2a977-a99b-45a5-8f88-fc6e6a48592c",
-                            Email = "admin@zoo-arcadia.com",
+                            ConcurrencyStamp = "fbb06795-843a-4257-976a-7e57a970e370",
+                            Email = "admin@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Admin",
-                            NormalizedEmail = "ADMIN@ZOO-ARCADIA.COM",
-                            NormalizedUserName = "ADMIN@ZOO-ARCADIA.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECtZ2bEcdHsizrHtxmvAsi1rX45OzM75ipk64rMYmnSNT/WzNxh3YRtjJVtoRqOeFA==",
+                            NormalizedEmail = "ADMIN@MAIL.COM",
+                            NormalizedUserName = "ADMIN@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIQmFkXIJUDDi6ZoaXHgw1GNR8EIhUrFsrr5tXwpRldsAeCySN0T1Lf8ie4C2v7K2Q==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "213499e5-3c13-453f-937f-f422bbd3afe8",
+                            SecurityStamp = "3093125f-0564-4325-8973-48b7772fef5f",
                             Surname = "Test",
                             TwoFactorEnabled = false,
-                            UserName = "admin@zoo-arcadia.com"
+                            UserName = "admin@mail.com"
                         });
                 });
 
@@ -507,7 +510,7 @@ namespace Arcadia_back.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "98e31e9c-89f0-4597-ab19-76f5bde8b5cd",
+                            UserId = "4fcfc12c-6809-49f4-8d61-90c7a4c1cc0f",
                             RoleId = "0"
                         });
                 });

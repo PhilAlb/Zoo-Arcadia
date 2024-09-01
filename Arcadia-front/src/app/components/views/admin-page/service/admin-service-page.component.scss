@@ -7,3 +7,11 @@
   text-decoration: none;
   color: red;
 }
+
+.table-custom-header {
+  
+  th {
+    background-color: #d2b48c; // Fond de couleur #deb887 pour l'en-tête
+    color: #fff; // Couleur du texte en blanc pour un meilleur contraste
+  }
+}

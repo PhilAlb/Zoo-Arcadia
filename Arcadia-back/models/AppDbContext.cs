@@ -27,7 +27,6 @@ namespace Arcadia_back.models
             optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Value"));
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -209,19 +208,22 @@ namespace Arcadia_back.models
                 {
                     Id = 1,
                     Message = "Un après-midi magique dans un zoo immersif qui nous permet d'être au plus près des animaux de les voir évoluer dans un cadre 100 % adapté. Leur histoire touchante nous est comptée sur les panneaux d'information tout au long du parc.",
-                    Pseudo = "Eric"
+                    Pseudo = "Eric",
+                    IsValidated = true
                 },
                 new()
                 {
                     Id = 2,
                     Message = "Zoo immense, les animaux semblent très bien traités, on a vu le personnel au petits soins et tendre avec les animaux notamment avec les singes qui le rendent donc super ambiance, et moment agréable en famille. Tarif abordable.",
-                    Pseudo = "Laura"
+                    Pseudo = "Laura",
+                    IsValidated = true
                 },
                 new()
                 {
                     Id = 3,
                     Message = "Superbe zoo. Des enclos bien entretenus et des grands espaces. Des animaux en bonne santé et beaucoup d'espèces. Espace pique nique, toilettes, buvettes, snack et boutique dans le parc. Je recommande fortement !",
-                    Pseudo = "Justine"
+                    Pseudo = "Justine",
+                    IsValidated = true
                 }
             );
         }

@@ -14,6 +14,7 @@ export class AddTestimonyFormComponent {
   readonly formControls = {
     pseudo: 'pseudo',
     message: 'message',
+    isValidated: 'isValidated'
   };
 
   @Output() onSubmit = new EventEmitter<TestimonyDto>();
@@ -26,6 +27,7 @@ export class AddTestimonyFormComponent {
       [this.formControls.message]: new FormControl('', {
         validators: Validators.compose([Validators.required]),
       }),
+      [this.formControls.isValidated]: new FormControl(false),
     });
   }
 
@@ -35,6 +37,7 @@ export class AddTestimonyFormComponent {
     const testimony: TestimonyDto = {
       pseudo: get(this.formControls.pseudo).trim(),
       message: get(this.formControls.message).trim(),
+      isValidated: get(this.formControls.isValidated) ?? false
     };
     this.createForm.reset();
 

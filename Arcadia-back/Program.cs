@@ -1,7 +1,6 @@
 using Arcadia_back.models;
 using Arcadia_back.Repositories;
 using ArcadiaBack;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -82,9 +81,16 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseStaticFiles(); // Enables static file serving
+
+string assetsPath = Path.Combine(Directory.GetCurrentDirectory(), "assets");
+// Check if the directory exists, if not, create it
+if (!Directory.Exists(assetsPath))
+{
+    Directory.CreateDirectory(assetsPath);
+}
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "assets")),
+    FileProvider = new PhysicalFileProvider(assetsPath),
     RequestPath = "/assets"
 });
 

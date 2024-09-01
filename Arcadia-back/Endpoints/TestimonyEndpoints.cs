@@ -11,7 +11,7 @@ public static class TestimonyEndpoints
     {
         app.MapGet(url, [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository) =>
         {
-            return await testimonyRepository.GetAllAsync();
+            return await testimonyRepository.GetAllAsync(); 
         });
 
         app.MapPost(url, [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony) =>
@@ -27,6 +27,7 @@ public static class TestimonyEndpoints
 
             testimonyToUpdate.Pseudo = testimony.Pseudo;
             testimonyToUpdate.Message = testimony.Message;
+            testimonyToUpdate.IsValidated = testimony.IsValidated; 
 
             await testimonyRepository.UpdateAsync(testimonyToUpdate, id);
             return true;

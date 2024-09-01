@@ -1,60 +1,73 @@
-<h3>Liste des Services</h3>
+<div class="container my-5">
+  <!-- Header du tableau -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">Liste des Services</h3>
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#addService"
+    >
+      Ajouter un nouvel élément
+    </button>
+  </div>
 
-<button
-  type="button"
-  class="btn btn-primary add-button"
-  data-bs-toggle="modal"
-  data-bs-target="#addService"
->
-  Ajouter un nouvel élément
-</button>
-<app-add-service-form (onSubmit)="add($event)"></app-add-service-form>
+  <!-- Modale d'ajout -->
+  <app-add-service-form (onSubmit)="add($event)"></app-add-service-form>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Titre</th>
-      <th scope="col">Description</th>
-      <th scope="col">Planning</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(element of list; track $index) {
-    <tr>
-      <td scope="row">{{ $index + 1 }}</td>
-      <td>{{ element.title }}</td>
-      <td>{{ element.description }}</td>
-      <td>{{ element.schedules }}</td>
-      <td>
-        <button
-          type="button"
-          class="btn btn-link edit-button"
-          data-bs-toggle="modal"
-          [attr.data-bs-target]="'#editService' + element.id"
-        >
-          Editer
-        </button>
-        <app-edit-service-form
-          [selectedService]="element"
-          (onSubmit)="edit($event)"
-        ></app-edit-service-form>
+  <!-- Tableau des services -->
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead class="table-custom-header">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Planning</th>
+            <th scope="col" class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(element of list; track $index) {
+          <tr>
+            <td scope="row">{{ $index + 1 }}</td>
+            <td>{{ element.title }}</td>
+            <td>{{ element.description }}</td>
+            <td>{{ element.schedules }}</td>
+            <td class="text-end">
+              <!-- Bouton Editer -->
+              <button
+                type="button"
+                class="btn btn-link p-0 text-primary"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#editService' + element.id"
+              >
+                Editer
+              </button>
+              <app-edit-service-form
+                [selectedService]="element"
+                (onSubmit)="edit($event)"
+              ></app-edit-service-form>
 
-        <button
-          type="button"
-          class="btn btn-link delete-button"
-          data-bs-toggle="modal"
-          [attr.data-bs-target]="'#confirmationModal' + element.id"
-        >
-          Supprimer
-        </button>
-        <app-confirmation-modal
-          [id]="element.id"
-          (confirmationSent)="delete(element.id ?? 0)"
-        ></app-confirmation-modal>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+              <!-- Bouton Supprimer -->
+              <button
+                type="button"
+                class="btn btn-link p-0 text-danger ms-3"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#confirmationModal' + element.id"
+              >
+                Supprimer
+              </button>
+              <app-confirmation-modal
+                [id]="element.id"
+                (confirmationSent)="delete(element.id ?? 0)"
+              ></app-confirmation-modal>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+h1 {
+    font-family: "Salsa", sans-serif;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+// Styles pour le navbar
+.navbar {
+    border-radius: 0.375rem; // Coins légèrement arrondis
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Ombre légère
+    padding: 0.5rem 1rem; // Espacement interne du navbar
+  
+    .navbar-brand {
+      font-size: 2rem; // Taille du texte pour le titre (plus grand)
+      font-weight: 700; // Poids de la police pour le titre
+    }
+  
+    .navbar-nav {
+      align-items: center; // Aligne verticalement les items
+    }
+  
+    .navbar-nav .nav-link {
+      font-size: 1.25rem; // Taille du texte des liens (plus grand)
+      padding: 0.75rem 1.25rem; // Espacement des liens
+      transition: background-color 0.2s ease, color 0.2s ease; // Transition fluide pour les changements de couleur
+  
+      &:hover {
+        background-color: #e9ecef; // Couleur de fond au survol
+        color: #D2B48C; // Couleur du texte au survol
+      }
+    }
+  
+    .navbar-toggler {
+      // Style du bouton de menu hamburger (si nécessaire)
+      border: none;
+      outline: none;
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,..."); // Icone personnalisée si besoin
+      }
+    }
+  }
+  
