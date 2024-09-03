@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HabitatDto } from '../../interfaces/habitat';
+import { HabitatDto } from '../../interfaces/admin/habitat';
 import { environment } from '../../../../environment';
 
 @Injectable({

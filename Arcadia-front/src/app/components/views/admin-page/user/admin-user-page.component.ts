@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Role, UserDto } from '../../../../interfaces/user';
+import { Role, UserDto } from '../../../../interfaces/admin/user';
 import { UserService } from '../../../../services/user/user.service';
 import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
 import { EditUserFormComponent } from '../forms/edit-user-form/edit-user-form.component';

@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { RouteLinks } from '../../app.routes';
 import { ConnexionModalComponent } from '../modals/connexion-modal/connexion-modal.component';
 import { ContactModalComponent } from '../modals/contact-modal/contact-modal.component';
-import { Role } from '../../interfaces/user';
+import { Role } from '../../interfaces/admin/user';
 
 @Component({
   selector: 'app-header',

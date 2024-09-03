@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environment';
-import { AnimalDto } from '../../interfaces/animal';
+import { AnimalDto } from '../../interfaces/admin/animal';
 
 @Injectable({
   providedIn: 'root',

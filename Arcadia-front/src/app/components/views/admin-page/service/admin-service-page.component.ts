@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceDto } from '../../../../interfaces/service';
+import { ServiceDto } from '../../../../interfaces/admin/service';
 import { ServiceService } from '../../../../services/service/service.service';
 import { AddServiceFormComponent } from '../forms/add-service-form/add-service-form.component';
 import { EditServiceFormComponent } from '../forms/edit-service-form/edit-service-form.component';

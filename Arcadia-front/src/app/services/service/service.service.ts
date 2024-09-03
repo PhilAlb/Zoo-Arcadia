@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ServiceDto } from '../../interfaces/service';
+import { ServiceDto } from '../../interfaces/admin/service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environment';
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TestimonyDto } from '../../../../../interfaces/testimony';
+import { TestimonyDto } from '../../../../../interfaces/admin/testimony';
 
 @Component({
   selector: 'app-add-testimony-form',

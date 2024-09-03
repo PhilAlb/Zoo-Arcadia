@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { HabitatDto } from '../../../../../interfaces/habitat';
+import { HabitatDto } from '../../../../../interfaces/admin/habitat';
 
 @Component({
   selector: 'app-add-habitat-form',

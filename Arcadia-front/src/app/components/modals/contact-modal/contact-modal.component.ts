@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ArcadiaService } from '../../../services/arcadia/arcadia.service';
-import { Contact } from '../../../interfaces/contact';
+import { Contact } from '../../../interfaces/admin/contact';
 
 @Component({
   selector: 'app-contact-modal',

@@ -7,8 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { UserDto } from '../../../../../interfaces/user';
-import { Role } from './../../../../../interfaces/user';
+import { Role, UserDto } from '../../../../../interfaces/admin/user';
 
 @Component({
   selector: 'app-add-user-form',

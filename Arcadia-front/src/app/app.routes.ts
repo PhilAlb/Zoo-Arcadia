@@ -9,7 +9,7 @@ import { HabitatsPageComponent } from './components/views/habitats-page/habitats
 import { HomePageComponent } from './components/views/home-page/home-page.component';
 import { ServicesPageComponent } from './components/views/services-page/services-page.component';
 import { RoleGuard } from './guards/role-guard';
-import { Role } from './interfaces/user';
+import { Role } from './interfaces/admin/user';
 import { AdminContactPageComponent } from './components/views/admin-page/contact/admin-contact-page.component';
 
 export enum RouteLinks {

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ServiceDto } from '../../../../../interfaces/service';
+import { ServiceDto } from '../../../../../interfaces/admin/service';
 
 @Component({
   selector: 'app-edit-service-form',

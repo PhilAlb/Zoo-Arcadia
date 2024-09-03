@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ServiceDto } from '../../../../../interfaces/service';
+import { ServiceDto } from '../../../../../interfaces/admin/service';
 
 @Component({
   selector: 'app-add-service-form',

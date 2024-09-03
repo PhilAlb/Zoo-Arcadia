@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HabitatDto } from '../../../../../interfaces/habitat';
+import { HabitatDto } from '../../../../../interfaces/admin/habitat';
 
 @Component({
   selector: 'app-edit-habitat-form',

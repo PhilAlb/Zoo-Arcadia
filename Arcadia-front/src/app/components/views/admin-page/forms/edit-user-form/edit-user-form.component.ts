@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Role, UserDto } from '../../../../../interfaces/user';
+import { Role, UserDto } from '../../../../../interfaces/admin/user';
 
 @Component({
   selector: 'app-edit-user-form',

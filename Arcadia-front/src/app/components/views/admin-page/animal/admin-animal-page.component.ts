@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnimalDto } from '../../../../interfaces/animal';
+import { AnimalDto } from '../../../../interfaces/admin/animal';
 import { AnimalService } from '../../../../services/animal/animal.service';
 import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
 import { AddAnimalFormComponent } from '../forms/add-animal-form/add-animal-form.component';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
-import { Contact } from '../../../../interfaces/contact';
+import { Contact } from '../../../../interfaces/admin/contact';
 import { ContactService } from '../../../../services/contact/contact.service';
 
 @Component({

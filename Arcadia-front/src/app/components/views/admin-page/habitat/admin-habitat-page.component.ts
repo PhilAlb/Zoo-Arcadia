@@ -1,6 +1,6 @@
 import { EditHabitatFormComponent } from './../forms/edit-habitat-form/edit-habitat-form.component';
 import { Component, OnInit } from '@angular/core';
-import { HabitatDto } from '../../../../interfaces/habitat';
+import { HabitatDto } from '../../../../interfaces/admin/habitat';
 import { HabitatService } from '../../../../services/habitat/habitat.service';
 import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
 import { AddHabitatFormComponent } from '../forms/add-habitat-form/add-habitat-form.component';

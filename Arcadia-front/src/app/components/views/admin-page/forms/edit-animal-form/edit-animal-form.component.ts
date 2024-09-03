@@ -7,8 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AnimalDto } from '../../../../../interfaces/animal';
-import { HabitatDto } from '../../../../../interfaces/habitat';
+import { AnimalDto } from '../../../../../interfaces/admin/animal';
+import { HabitatDto } from '../../../../../interfaces/admin/habitat';
 import { HabitatService } from '../../../../../services/habitat/habitat.service';
 
 @Component({

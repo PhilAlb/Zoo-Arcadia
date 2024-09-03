@@ -1,13 +1,22 @@
 <div class="card text-center border-0 mb-3">
-    <div class="row no-gutters card-horizontal">
-      <div class="col-md-6">
-        <img [src]="cardImage" class="card-img" [ngStyle]="{'object-position': '50% ' + verticalPosition}">
-      </div>
-      <div class="col-md-6 d-flex align-items-center">
-        <div class="card-body">
-          <h5 class="card-title">{{ cardTitle }}</h5>
-          <p class="card-text">{{ cardMessage }}</p>
+  <div class="row no-gutters card-horizontal">
+    <div class="col-md-6 position-relative">
+      <div class="image-container">
+        <img [src]="cardImage" class="card-img" [ngStyle]="{'object-position': '50% ' + verticalPosition}"
+          (mouseover)="showOverlay = true" (mouseout)="showOverlay = false">
+        <div class="overlay" [ngClass]="{ 'show': showOverlay }">
+          <h4 class="overlay-title">Nos animaux</h4>
+          <ul class="overlay-list">
+            <li *ngFor="let animal of animalList">{{ animal.Race }} - {{ animal.Name }}</li>
+          </ul>
         </div>
       </div>
     </div>
+    <div class="col-md-6 d-flex align-items-center">
+      <div class="card-body">
+        <h5 class="card-title">{{ cardTitle }}</h5>
+        <p class="card-text">{{ cardMessage }}</p>
+      </div>
+    </div>
   </div>
+</div>

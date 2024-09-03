@@ -114,5 +114,24 @@ app.MapServiceEndpoints();
 app.MapTestimonyEndpoints();
 app.MapContactEndpoints();
 app.MapUserEndpoints();
+app.MapGet("/habitats/animals", async (IAnimalRepository animalRepository) =>
+        {
+            var animals = await animalRepository.GetAllAsync();
+            var animalDtos = new List<AnimalList>();
+
+            foreach (var a in animals)
+            {
+                animalDtos.Add(new AnimalList()
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Race = a.Race,
+                    ImageUrl = a.ImageUrl,
+                    HabitatId = a.AssociatedHabitat?.Id
+                });
+            }
+
+            return animalDtos;
+        });
 
 app.Run();

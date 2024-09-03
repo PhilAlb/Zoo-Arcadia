@@ -1,6 +1,6 @@
 import { HabitatService } from '../../../../../services/habitat/habitat.service';
 import { Component, Output, EventEmitter } from '@angular/core';
-import { AnimalDto } from '../../../../../interfaces/animal';
+import { AnimalDto } from '../../../../../interfaces/admin/animal';
 import {
   FormBuilder,
   FormControl,
@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { HabitatDto } from '../../../../../interfaces/habitat';
+import { HabitatDto } from '../../../../../interfaces/admin/habitat';
 
 @Component({
   selector: 'app-add-animal-form',
