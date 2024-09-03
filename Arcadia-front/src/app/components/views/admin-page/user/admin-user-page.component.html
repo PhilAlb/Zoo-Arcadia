@@ -26,7 +26,7 @@
             <th scope="col">Prénom</th>
             <th scope="col">Adresse mail</th>
             <th scope="col">Rôle</th>
-            <th scope="col">Actions</th>
+            <th scope="col" class="text-end">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@
             <td>{{ element.name }}</td>
             <td>{{ element.email }}</td>
             <td>{{ roleEnum[element.role] }}</td>
-            <td>
+            <td class="d-flex justify-content-end">
               <!-- Bouton Editer -->
               <button
                 type="button"
