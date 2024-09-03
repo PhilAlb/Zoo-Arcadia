@@ -21,6 +21,7 @@ export class AnimalService {
 
     a.append('name', animal.name);
     a.append('race', animal.race);
+    a.append('comment', animal.comment ?? "");
     if (animal.associatedHabitatId)
       a.append('associatedHabitatId', animal.associatedHabitatId.toString());
     if (animal.image) a.append('image', animal.image);

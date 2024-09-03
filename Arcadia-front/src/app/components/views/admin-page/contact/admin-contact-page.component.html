@@ -1,31 +1,31 @@
 <div class="container my-5">
-    <!-- Header du tableau -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h3 class="mb-0">Liste des Messages</h3>
-    </div>
-  
-    <!-- Tableau des contacts -->
-    <div class="card shadow-sm">
-      <div class="card-body p-0">
-        <table class="table table-hover mb-0">
-          <thead class="table-custom-header">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Email</th>
-              <th scope="col">Titre</th>
-              <th scope="col">Message</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for(element of list; track $index) {
-            <tr>
-              <td scope="row">{{ $index + 1 }}</td>
-              <td>{{ element.email }}</td>
-              <td>{{ element.title }}</td>
-              <td>{{ element.message }}</td>
-              <td>
- 
+  <!-- Header du tableau -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">Liste des Messages</h3>
+  </div>
+
+  <!-- Tableau des contacts -->
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead class="table-custom-header">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Message</th>
+            <th scope="col" class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(element of list; track $index) {
+          <tr>
+            <td scope="row">{{ $index + 1 }}</td>
+            <td>{{ element.email }}</td>
+            <td>{{ element.title }}</td>
+            <td>{{ element.message }}</td>
+            <td>
+              <div class="d-flex justify-content-end">
                 <!-- Bouton Supprimer -->
                 <button
                   type="button"
@@ -39,12 +39,12 @@
                   [id]="element.id"
                   (confirmationSent)="delete(element.id ?? 0)"
                 ></app-confirmation-modal>
-              </td>
-            </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
     </div>
   </div>
-  
+</div>

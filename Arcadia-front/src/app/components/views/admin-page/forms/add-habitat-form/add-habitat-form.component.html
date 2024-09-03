@@ -21,6 +21,11 @@
                             <div class="form-label form-item-title">Image</div>                    
                             <input class="form-control" type="file" accept="image/*" (change)="addImage($event)">
                         </div>
+
+                        <div class="mb-3">
+                            <label for="comment" class="form-label form-item-title">Commentaires</label>
+                            <textarea class="form-control" id="comment" [formControlName]="formControls.comment"></textarea>
+                        </div>
                         
                         <div class="modal-footer custom-modal-footer d-flex justify-content-center">
                             <button type="button" class="btn btn-cancel" data-bs-toggle="modal" data-bs-target="#addHabitat">Fermer</button>

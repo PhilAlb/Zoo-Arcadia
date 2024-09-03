@@ -56,6 +56,7 @@ builder.Services.AddAuthorization();
 // Repositories
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
+builder.Services.AddScoped<IHabitatRepository, HabitatRepository>();
 
 // Cors policy
 builder.Services.AddCors(options =>
@@ -105,7 +106,8 @@ app.UseStaticFiles(new StaticFileOptions
 app.MapAccountEndpoints();
 
 // User
-app.MapHomeEndpoints();
+app.MapHomepageEndpoints();
+app.MapHabitatpageEndpoints();
 
 // Admin
 app.MapAnimalEndpoints();
@@ -114,24 +116,5 @@ app.MapServiceEndpoints();
 app.MapTestimonyEndpoints();
 app.MapContactEndpoints();
 app.MapUserEndpoints();
-app.MapGet("/habitats/animals", async (IAnimalRepository animalRepository) =>
-        {
-            var animals = await animalRepository.GetAllAsync();
-            var animalDtos = new List<AnimalList>();
-
-            foreach (var a in animals)
-            {
-                animalDtos.Add(new AnimalList()
-                {
-                    Id = a.Id,
-                    Name = a.Name,
-                    Race = a.Race,
-                    ImageUrl = a.ImageUrl,
-                    HabitatId = a.AssociatedHabitat?.Id
-                });
-            }
-
-            return animalDtos;
-        });
 
 app.Run();

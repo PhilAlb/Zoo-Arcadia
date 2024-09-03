@@ -27,7 +27,7 @@
             <th scope="col">Pseudo</th>
             <th scope="col">Message</th>
             <th scope="col" width="7%">Validé ?</th>
-            <th scope="col" width="12%">Actions</th>
+            <th scope="col" class="text-end" width="12%">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -38,34 +38,36 @@
             <td>{{ element.message }}</td>
             <td>{{ element.isValidated ? "Oui" : "Non" }}</td>
             <td>
-              <!-- Bouton Editer -->
-              <button
-                type="button"
-                class="btn btn-link p-0 text-primary"
-                data-bs-toggle="modal"
-                [attr.data-bs-target]="'#editTestimony' + element.id"
-              >
-                Editer
-              </button>
-              <app-edit-testimony-form
-                [selectedTestimony]="element"
-                [currentRole]="currentRole"
-                (onSubmit)="edit($event)"
-              ></app-edit-testimony-form>
+              <div class="d-flex justify-content-end">
+                <!-- Bouton Editer -->
+                <button
+                  type="button"
+                  class="btn btn-link p-0 text-primary"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#editTestimony' + element.id"
+                >
+                  Editer
+                </button>
+                <app-edit-testimony-form
+                  [selectedTestimony]="element"
+                  [currentRole]="currentRole"
+                  (onSubmit)="edit($event)"
+                ></app-edit-testimony-form>
 
-              <!-- Bouton Supprimer -->
-              <button
-                type="button"
-                class="btn btn-link p-0 text-danger ms-3"
-                data-bs-toggle="modal"
-                [attr.data-bs-target]="'#confirmationModal' + element.id"
-              >
-                Supprimer
-              </button>
-              <app-confirmation-modal
-                [id]="element.id"
-                (confirmationSent)="delete(element.id ?? 0)"
-              ></app-confirmation-modal>
+                <!-- Bouton Supprimer -->
+                <button
+                  type="button"
+                  class="btn btn-link p-0 text-danger ms-3"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#confirmationModal' + element.id"
+                >
+                  Supprimer
+                </button>
+                <app-confirmation-modal
+                  [id]="element.id"
+                  (confirmationSent)="delete(element.id ?? 0)"
+                ></app-confirmation-modal>
+              </div>
             </td>
           </tr>
           }

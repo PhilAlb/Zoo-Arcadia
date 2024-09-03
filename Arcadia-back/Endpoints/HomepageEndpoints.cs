@@ -3,9 +3,9 @@ using Arcadia_back.Repositories;
 using ArcadiaBack;
 using Microsoft.AspNetCore.Mvc;
 
-public static class HomeEndpoints
+public static class HomepageEndpoints
 {
-    public static void MapHomeEndpoints(this IEndpointRouteBuilder app)
+    public static void MapHomepageEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapGet("/habitats", async (IRepository<Habitat> habitatRepository) =>
         {
@@ -24,7 +24,7 @@ public static class HomeEndpoints
             };
 
             return habitatsDto;
-        }).WithTags("Homepage");
+        }).WithTags("Home page");
 
         app.MapGet("/animals", async (IRepository<Animal> animalRepository) =>
         {
@@ -41,7 +41,7 @@ public static class HomeEndpoints
             };
 
             return animalsDto;
-        }).WithTags("Homepage");
+        }).WithTags("Home page");
 
         app.MapGet("/services", async (IRepository<Service> serviceRepository) =>
         {
@@ -61,7 +61,7 @@ public static class HomeEndpoints
             };
 
             return servicesDto;
-        }).WithTags("Homepage");
+        }).WithTags("Home page");
 
         app.MapGet("/testimonies", async (IRepository<Testimony> testimonyRepository) =>
         {
@@ -80,20 +80,20 @@ public static class HomeEndpoints
             };
 
             return testimonyDtos;
-        }).WithTags("Homepage");
+        }).WithTags("Home page");
 
         app.MapPost("/testimonies", async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony) =>
         {
             testimony.IsValidated = false;
             await testimonyRepository.AddAsync(testimony);
             return true;
-        }).WithTags("Homepage");
+        }).WithTags("Home page");
 
         app.MapPost("/contacts", async (IRepository<Contact> contactRepository, [FromBody] Contact contact) =>
         {
             await contactRepository.AddAsync(contact);
 
             return true;
-        }).WithTags("Homepage");
+        }).WithTags("Home page");
     }
 }

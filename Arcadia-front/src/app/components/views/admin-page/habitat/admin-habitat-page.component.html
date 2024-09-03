@@ -2,6 +2,7 @@
   <!-- Header du tableau -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 class="mb-0">Liste des Habitats</h3>
+    @if(currentRole == Roles.Admin) {
     <button
       type="button"
       class="btn btn-custom"
@@ -10,6 +11,7 @@
     >
       Ajouter un nouvel élément
     </button>
+    }
   </div>
 
   <!-- Modale d'ajout -->
@@ -24,6 +26,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Commentaires</th>
             <th scope="col" class="text-end">Actions</th>
           </tr>
         </thead>
@@ -33,34 +36,40 @@
             <td scope="row">{{ $index + 1 }}</td>
             <td>{{ element.title }}</td>
             <td>{{ element.description }}</td>
-            <td class="d-flex justify-content-end">
-              <!-- Bouton Editer -->
-              <button
-                type="button"
-                class="btn btn-link p-0 text-primary"
-                data-bs-toggle="modal"
-                [attr.data-bs-target]="'#editHabitat' + element.id"
-              >
-                Editer
-              </button>
-              <app-edit-habitat-form
-                [selectedHabitat]="element"
-                (onSubmit)="edit($event)"
-              ></app-edit-habitat-form>
+            <td>{{ element.comment }}</td>
+            <td>
+              <div class="d-flex justify-content-end">
+                <!-- Bouton Editer -->
+                <button
+                  type="button"
+                  class="btn btn-link p-0 text-primary"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#editHabitat' + element.id"
+                >
+                  Editer
+                </button>
+                <app-edit-habitat-form
+                  [selectedHabitat]="element"
+                  [currentRole]="currentRole"
+                  (onSubmit)="edit($event)"
+                ></app-edit-habitat-form>
 
-              <!-- Bouton Supprimer -->
-              <button
-                type="button"
-                class="btn btn-link p-0 text-danger ms-3"
-                data-bs-toggle="modal"
-                [attr.data-bs-target]="'#confirmationModal' + element.id"
-              >
-                Supprimer
-              </button>
-              <app-confirmation-modal
-                [id]="element.id"
-                (confirmationSent)="delete(element.id ?? 0)"
-              ></app-confirmation-modal>
+                <!-- Bouton Supprimer -->
+                @if(currentRole == Roles.Admin) {
+                <button
+                  type="button"
+                  class="btn btn-link p-0 text-danger ms-3"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#confirmationModal' + element.id"
+                >
+                  Supprimer
+                </button>
+                <app-confirmation-modal
+                  [id]="element.id"
+                  (confirmationSent)="delete(element.id ?? 0)"
+                ></app-confirmation-modal>
+                }
+              </div>
             </td>
           </tr>
           }

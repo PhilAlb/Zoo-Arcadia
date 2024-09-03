@@ -88,16 +88,47 @@
 
 <section class="container my-5">
   <h2 class="text-center mb-4">Témoignages de nos visiteurs</h2>
-  <div class="row">
-    <div class="d-flex card-testimonies">
-      @for (card of cardTestimonyLayout; track $index){
-      <app-card-testimony
-        [cardPseudo]="card.pseudo"
-        [cardMessage]="card.message"
-      ></app-card-testimony>
-      }
+  <div id="carouselTestimonies" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div
+        *ngFor="
+          let group of cardTestimonyLayout | chunk : testimoniesChunkSize : currentTestimoniesIndex;
+          let i = index
+        "
+        class="carousel-item"
+        [class.active]="i === 0"
+      >
+        <div class="card-testimonies">
+          @for (card of group; track $index){
+          <app-card-testimony
+            [cardPseudo]="card.pseudo"
+            [cardMessage]="card.message"
+          ></app-card-testimony>
+          }
+        </div>
+      </div>
     </div>
+
+    @if(currentTestimoniesIndex !== 0){
+    <button class="carousel-control-prev" type="button" (click)="prevTestimonies()">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    } 
+    
+    @if(currentTestimoniesIndex + testimoniesChunkSize < cardTestimonyLayout.length){
+    <button
+      class="carousel-control-next"
+      type="button"
+      (click)="nextTestimonies()"
+      [disabled]=""
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    }
   </div>
+
   <div class="row mt-4">
     <div class="col-12 text-center">
       <button
@@ -112,5 +143,3 @@
     </div>
   </div>
 </section>
-
-<app-testimony-modal></app-testimony-modal>

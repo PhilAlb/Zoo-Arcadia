@@ -10,4 +10,5 @@ export interface UserDto {
 export enum Role {
   Admin,
   Employee,
+  Veterinarian
 }

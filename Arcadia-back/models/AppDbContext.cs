@@ -16,7 +16,6 @@ namespace Arcadia_back.models
         }
 
         public DbSet<Animal> Animals { get; set; }
-        public DbSet<AnimalFoodHistory> AnimalFoodHistory { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Testimony> Testimonies { get; set; }
@@ -44,15 +43,19 @@ namespace Arcadia_back.models
             GenerateHabitatSeed(modelBuilder);
             GenerateServiceSeed(modelBuilder);
             GenerateTestimonySeed(modelBuilder);
-            GenerateAdminUserSeed(modelBuilder);
+            GenerateDefaultUsersSeed(modelBuilder);
             GenerateContactSeed(modelBuilder);
         }
 
-        private void GenerateAdminUserSeed(ModelBuilder modelBuilder)
+        private void GenerateDefaultUsersSeed(ModelBuilder modelBuilder)
         {
             // Seed roles
             var adminRoleId = "0";
             var adminUserId = Guid.NewGuid().ToString();
+
+            var veterinarianRoleId = "1";
+            var veterinarianUserId = Guid.NewGuid().ToString();
+
             var employeeRoleId = "2";
             var employeeUserId = Guid.NewGuid().ToString();
 
@@ -65,9 +68,9 @@ namespace Arcadia_back.models
                 },
                 new IdentityRole
                 {
-                    Id = "1",
-                    Name = Role.User.ToString(),
-                    NormalizedName = Role.User.ToString().ToUpper(),
+                    Id = veterinarianRoleId,
+                    Name = Role.Veterinarian.ToString(),
+                    NormalizedName = Role.Veterinarian.ToString().ToUpper(),
                 },
                 new IdentityRole
                 {
@@ -77,7 +80,7 @@ namespace Arcadia_back.models
                 }
             );
 
-            // Seed the admin user
+            // Seed users
             var hasher = new PasswordHasher<User>();
             var mail = "admin@zoo-arcadia.com";
             var admin = new User()
@@ -99,6 +102,26 @@ namespace Arcadia_back.models
             };
             admin.PasswordHash = hasher.HashPassword(admin, "Admin0001");
 
+            var veterinarianMail = "veterinarian@zoo-arcadia.com";
+            var veterinarian = new User()
+            {
+                Id = veterinarianUserId,
+                Name = "Vétérinaire",
+                Surname = "Test",
+                UserName = veterinarianMail,
+                NormalizedUserName = veterinarianMail.ToUpper(),
+                Email = veterinarianMail,
+                NormalizedEmail = veterinarianMail.ToUpper(),
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                AccessFailedCount = 0,
+                LockoutEnabled = false,
+                TwoFactorEnabled = false,
+            };
+            veterinarian.PasswordHash = hasher.HashPassword(veterinarian, "Veterinarian0001");
+
             var employeeMail = "employee@zoo-arcadia.com";
             var employee = new User()
             {
@@ -119,14 +142,19 @@ namespace Arcadia_back.models
             };
             employee.PasswordHash = hasher.HashPassword(employee, "Employee0001");
 
-            modelBuilder.Entity<User>().HasData(new List<User> { admin, employee });
+            modelBuilder.Entity<User>().HasData(new List<User> { admin, veterinarian, employee });
 
-            // Assign admin user to admin role
+            // Assign user to role
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(
                 new IdentityUserRole<string>
                 {
                     UserId = adminUserId,
                     RoleId = adminRoleId
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = veterinarianUserId,
+                    RoleId = veterinarianRoleId
                 },
                 new IdentityUserRole<string>
                 {
@@ -145,6 +173,8 @@ namespace Arcadia_back.models
                     ImageUrl = "assets/images/animals/lion1.jpg",
                     Name = "Mufasa",
                     Race = "Lion",
+                    Comment = "",
+                    Views = 0,
                     AssociatedHabitatId = 1
                 },
                 new()
@@ -153,6 +183,8 @@ namespace Arcadia_back.models
                     ImageUrl = "assets/images/animals/tiger1.jpg",
                     Name = "Shere Khan",
                     Race = "Tigre",
+                    Comment = "",
+                    Views = 0,
                     AssociatedHabitatId = 2,
                 },
                 new()
@@ -161,6 +193,8 @@ namespace Arcadia_back.models
                     ImageUrl = "assets/images/animals/monkey1.jpg",
                     Name = "Louis",
                     Race = "Singe",
+                    Comment = "",
+                    Views = 0,
                     AssociatedHabitatId = 2,
                 },
                 new()
@@ -169,13 +203,18 @@ namespace Arcadia_back.models
                     ImageUrl = "assets/images/animals/panda1.jpg",
                     Name = "Po",
                     Race = "Panda",
+                    Comment = "",
+                    Views = 0,
                     AssociatedHabitatId = 1,
-                }, new()
+                },
+                new()
                 {
                     Id = 5,
                     ImageUrl = "assets/images/animals/outter1.jpg",
                     Name = "Angèle",
                     Race = "Loutre",
+                    Comment = "",
+                    Views = 0,
                     AssociatedHabitatId = 3,
                 });
         }
@@ -190,6 +229,7 @@ namespace Arcadia_back.models
                     Description = "La savane est caractérisée par de vastes plaines herbeuses et les paysages ouverts d'Afrique. Les paysages offrent une végétation clairsemée, principalement composée de hautes herbes, d'arbustes et de quelques arbres dispersés. La savane est connue pour ses climats chauds et ses saisons alternant entre des périodes sèches et des périodes de pluies intenses.",
                     ImageUrl = "assets/images/habitats/savannah1.jpg",
                     ImageVerticalPosition = "30%",
+                    Comment = ""
                 },
                 new()
                 {
@@ -198,6 +238,7 @@ namespace Arcadia_back.models
                     Description = "La jungle est caractérisée par une végétation dense avec des arbres à canopée élevée, des lianes enchevêtrées, et des fougères luxuriantes. Des cascades et des ruisseaux serpentent à travers la forêt, apportant une ambiance sonore apaisante de l'eau en mouvement.",
                     ImageUrl = "assets/images/habitats/jungle1.webp",
                     ImageVerticalPosition = "55%",
+                    Comment = ""
                 },
                 new()
                 {
@@ -206,6 +247,7 @@ namespace Arcadia_back.models
                     Description = "Les marais sont caractérisés par des zones humides situées à la transition entre les écosystèmes aquatiques et terrestres, offrant un refuge crucial pour de nombreuses espèces. Découvrez cet environnement riche et diversifié, où chaque coin regorge de vie et de mystères.",
                     ImageUrl = "assets/images/habitats/swamp1.jpg",
                     ImageVerticalPosition = "50%",
+                    Comment = ""
                 }
             );
         }

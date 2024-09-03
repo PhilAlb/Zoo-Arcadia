@@ -9,7 +9,7 @@ public static class HabitatEndpoints
 
     public static void MapHabitatEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet(url, [Authorize(Roles = "Admin")] async (IRepository<Habitat> habitatRepository) =>
+        app.MapGet(url, [Authorize(Roles = "Admin, Veterinarian")] async (IRepository<Habitat> habitatRepository) =>
         {
             var habitats = await habitatRepository.GetAllAsync();
             var habitatDto = new List<HabitatDto>();
@@ -22,6 +22,7 @@ public static class HabitatEndpoints
                     Title = h.Title,
                     Description = h.Description,
                     ImageUrl = h.ImageUrl,
+                    Comment = h.Comment
                 });
             }
 
@@ -53,6 +54,7 @@ public static class HabitatEndpoints
                 Description = habitatDto.Description,
                 ImageVerticalPosition = "50%",
                 ImageUrl = fileUrl,
+                Comment = habitatDto.Comment ?? "",
                 Animals = []
             };
 
@@ -60,13 +62,14 @@ public static class HabitatEndpoints
             return true;
         }).DisableAntiforgery().WithTags("Admin - Habitats");
 
-        app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Habitat> habitatRepository, [FromBody] HabitatDto habitat, int id) =>
+        app.MapPut(url + "/{id}", [Authorize(Roles = "Admin, Veterinarian")] async (IRepository<Habitat> habitatRepository, [FromBody] HabitatDto habitat, int id) =>
         {
             var habitatToUpdate = await habitatRepository.GetByIdAsync(id);
             if (habitatToUpdate == null) return false;
 
             habitatToUpdate.Title = habitat.Title;
             habitatToUpdate.Description = habitat.Description;
+            habitatToUpdate.Comment = habitat.Comment ?? "";
 
             await habitatRepository.UpdateAsync(habitatToUpdate, id);
             return true;

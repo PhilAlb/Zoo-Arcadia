@@ -4,6 +4,8 @@ import { HabitatDto } from '../../../../interfaces/admin/habitat';
 import { HabitatService } from '../../../../services/habitat/habitat.service';
 import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
 import { AddHabitatFormComponent } from '../forms/add-habitat-form/add-habitat-form.component';
+import { AccountService } from '../../../../services/account/account.service';
+import { Role } from '../../../../interfaces/admin/user';
 
 @Component({
   selector: 'app-admin-habitat-page',
@@ -17,11 +19,20 @@ import { AddHabitatFormComponent } from '../forms/add-habitat-form/add-habitat-f
   styleUrl: './admin-habitat-page.component.scss',
 })
 export class AdminHabitatPageComponent implements OnInit {
+  readonly Roles = Role;
+  currentRole: Role;
   list: HabitatDto[] = [];
 
-  constructor(private service: HabitatService) {}
+  constructor(
+    private service: HabitatService,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
+    this.accountService.role$.subscribe((role) => {
+      if (role != null) this.currentRole = role;
+    });
+
     this.getList();
   }
 

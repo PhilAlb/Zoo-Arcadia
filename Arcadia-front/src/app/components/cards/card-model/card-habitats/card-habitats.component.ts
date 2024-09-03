@@ -1,44 +1,33 @@
-import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { AnimalDto } from '../../../../interfaces/admin/animal';
 import { ArcadiaService } from '../../../../services/arcadia/arcadia.service';
-import { IAnimalList } from '../../../../interfaces/animalList/IAnimalList';
+import { AnimalModalComponent } from '../../../modals/animal-modal/animal-modal.component';
 
 @Component({
   selector: 'app-card-habitats',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AnimalModalComponent],
   templateUrl: './card-habitats.component.html',
-  styleUrls: ['./card-habitats.component.scss'],  
+  styleUrls: ['./card-habitats.component.scss'],
 })
-export class CardHabitatsComponent implements OnInit {
+export class CardHabitatsComponent {
   @Input() cardImage: string = '';
   @Input() cardTitle: string = '';
   @Input() cardMessage: string = '';
   @Input() verticalPosition?: string = '50%';
 
-  @Input() animals: IAnimalList[];
+  @Input() animals: AnimalDto[];
 
+  selectedAnimal: AnimalDto;
   showOverlay: boolean = false;
 
-  // Liste des animaux par carte
-  // private cardAnimalLists: { [key: string]: string[] } = {
-  //  'Savane': ['Lion'],
-  //  'Jungle': ['Tigre', 'Singe', 'Panda'],
-  //  'Marais': ['Loutre']
-  // };
+  constructor(private service: ArcadiaService) {}
 
-  //get animals(): string[] {
-  //  return this.cardAnimalLists[this.cardTitle] || [];
-  // };
-
-  animalList: any = [];
-
-  constructor(private service: ArcadiaService) {
-  }
-
-  ngOnInit() {
-    this.service
-      .getAllAnimalList()
-      .subscribe((data) => (this.animalList = data));
+  incrementViews(animal: AnimalDto): void {
+    if (animal.id != null) {
+      this.service.incrementAnimalViews(animal.id).subscribe();
+      this.selectedAnimal = animal;
+    }
   }
 }

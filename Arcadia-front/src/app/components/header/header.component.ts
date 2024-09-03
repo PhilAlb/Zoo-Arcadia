@@ -33,6 +33,9 @@ export class HeaderComponent implements OnInit {
         case Role.Employee:
           this.links.push({ label: 'Employé', url: `/${RouteLinks.Admin}` });
           break;
+        case Role.Veterinarian:
+          this.links.push({ label: 'Vétérinaire', url: `/${RouteLinks.Admin}` });
+          break;  
       }
     });
   }

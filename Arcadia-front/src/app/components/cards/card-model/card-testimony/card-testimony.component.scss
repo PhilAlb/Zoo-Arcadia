@@ -1,6 +1,24 @@
-:host:nth-of-type(2) {
-    margin: 0 10px;
+:host {
+  max-width: 33%;
+  width: 100%;
 }
-.card-author {
-    font-weight: bold;
+
+:host:nth-of-type(2) {
+  margin: 0 10px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+.card-title {
+  margin: 0;
+  font-weight: bold;
+}
+
+.card-container {
+  height: 200px;
 }

@@ -21,6 +21,7 @@ export class AddHabitatFormComponent {
   readonly formControls = {
     title: 'title',
     description: 'description',
+    comment: 'comment',
   };
 
   @Output() onSubmit = new EventEmitter<HabitatDto>();
@@ -34,6 +35,7 @@ export class AddHabitatFormComponent {
       [this.formControls.description]: new FormControl('', {
         validators: Validators.compose([Validators.required]),
       }),
+      [this.formControls.comment]: new FormControl(''),
     });
   }
 
@@ -47,6 +49,7 @@ export class AddHabitatFormComponent {
     const habitat: HabitatDto = {
       title: get(this.formControls.title).trim(),
       description: get(this.formControls.description).trim(),
+      comment: get(this.formControls.comment).trim(),
       image: this.selectedImage,
     };
     this.createForm.reset();

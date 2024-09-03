@@ -10,6 +10,7 @@ import { TestimonyModalComponent } from '../../modals/testimony-modal/testimony-
 import { environment } from '../../../../../environment';
 import { CardTestimonyComponent } from '../../cards/card-model/card-testimony/card-testimony.component';
 import { CardModelComponent } from '../../cards/card-model/card-model.component';
+import { ChunkPipe } from '../../../pipes/chunk.pipe';
 
 @Component({
   selector: 'app-home-page',
@@ -20,6 +21,7 @@ import { CardModelComponent } from '../../cards/card-model/card-model.component'
     CarouselAnimalsComponent,
     CardTestimonyComponent,
     TestimonyModalComponent,
+    ChunkPipe,
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
@@ -32,6 +34,9 @@ export class HomePageComponent implements OnInit {
   carouselLayout: ICarouselAnimalsLayout[] = [];
   cardTestimonyLayout: ICardTestimonyLayout[] = [];
   carouselAnimalsLayout: ICarouselAnimalsLayout[];
+
+  currentTestimoniesIndex = 0;
+  readonly testimoniesChunkSize = 3;
 
   constructor(private service: ArcadiaService) {}
 
@@ -59,5 +64,20 @@ export class HomePageComponent implements OnInit {
       .subscribe(
         (data: ICardTestimonyLayout[]) => (this.cardTestimonyLayout = data)
       );
+  }
+
+  prevTestimonies(): void {
+    if (this.currentTestimoniesIndex > 0) {
+      this.currentTestimoniesIndex--;
+    }
+  }
+
+  nextTestimonies(): void {
+    if (
+      this.currentTestimoniesIndex + 1 + this.testimoniesChunkSize <=
+      this.cardTestimonyLayout.length
+    ) {
+      this.currentTestimoniesIndex++;
+    }
   }
 }

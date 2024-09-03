@@ -9,7 +9,7 @@ public static class AnimalEndpoints
 
     public static void MapAnimalEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet(url, [Authorize(Roles = "Admin")] async (IAnimalRepository animalRepository) =>
+        app.MapGet(url, [Authorize(Roles = "Admin, Veterinarian")] async (IAnimalRepository animalRepository) =>
         {
             var animals = await animalRepository.GetAllAsync();
             var animalDtos = new List<AnimalDto>();
@@ -21,7 +21,9 @@ public static class AnimalEndpoints
                     Id = a.Id,
                     Name = a.Name,
                     Race = a.Race,
+                    Views = a.Views,
                     ImageUrl = a.ImageUrl,
+                    Comment = a.Comment,
                     AssociatedHabitatTitle = a.AssociatedHabitat?.Title
                 });
             }
@@ -54,6 +56,8 @@ public static class AnimalEndpoints
                 ImageUrl = fileUrl,
                 Race = animalDto.Race,
                 AssociatedHabitatId = animalDto.AssociatedHabitatId,
+                Comment = animalDto.Comment ?? "",
+                Views = 0,
             };
 
             await animalRepository.AddAsync(animal);
@@ -63,14 +67,16 @@ public static class AnimalEndpoints
         .DisableAntiforgery()
         .WithTags("Admin - Animals");
 
-        app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IAnimalRepository animalRepository, [FromBody] AnimalDto animal, int id) =>
+        app.MapPut(url + "/{id}", [Authorize(Roles = "Admin, Veterinarian")] async (IAnimalRepository animalRepository, [FromBody] AnimalDto animal, int id) =>
         {
             var animalToUpdate = await animalRepository.GetByIdAsync(id);
             if (animalToUpdate == null) return false;
 
+            if(animal.AssociatedHabitatId != null) animalToUpdate.AssociatedHabitatId = animal.AssociatedHabitatId;
             animalToUpdate.Name = animal.Name;
             animalToUpdate.Race = animal.Race;
-            animalToUpdate.AssociatedHabitatId = animal.AssociatedHabitatId;
+            animalToUpdate.Views = animal.Views;
+            animalToUpdate.Comment = animal.Comment ?? "";
 
             await animalRepository.UpdateAsync(animalToUpdate, id);
             return true;

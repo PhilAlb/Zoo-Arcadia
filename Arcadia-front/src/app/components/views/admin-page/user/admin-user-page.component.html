@@ -37,34 +37,36 @@
             <td>{{ element.name }}</td>
             <td>{{ element.email }}</td>
             <td>{{ roleEnum[element.role] }}</td>
-            <td class="d-flex justify-content-end">
-              <!-- Bouton Editer -->
-              <button
-                type="button"
-                class="btn btn-link p-0 text-primary"
-                data-bs-toggle="modal"
-                [attr.data-bs-target]="'#editUser' + element.id"
-              >
-                Editer
-              </button>
-              <app-edit-user-form
-                [selectedUser]="element"
-                (onSubmit)="edit($event)"
-              ></app-edit-user-form>
+            <td>
+              <div class="d-flex justify-content-end">
+                <!-- Bouton Editer -->
+                <button
+                  type="button"
+                  class="btn btn-link p-0 text-primary"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#editUser' + element.id"
+                >
+                  Editer
+                </button>
+                <app-edit-user-form
+                  [selectedUser]="element"
+                  (onSubmit)="edit($event)"
+                ></app-edit-user-form>
 
-              <!-- Bouton Supprimer -->
-              <button
-                type="button"
-                class="btn btn-link p-0 text-danger ms-3"
-                data-bs-toggle="modal"
-                [attr.data-bs-target]="'#confirmationModal' + element.id"
-              >
-                Supprimer
-              </button>
-              <app-confirmation-modal
-                [id]="element.id"
-                (confirmationSent)="delete(element.id ?? 0)"
-              ></app-confirmation-modal>
+                <!-- Bouton Supprimer -->
+                <button
+                  type="button"
+                  class="btn btn-link p-0 text-danger ms-3"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#confirmationModal' + element.id"
+                >
+                  Supprimer
+                </button>
+                <app-confirmation-modal
+                  [id]="element.id"
+                  (confirmationSent)="delete(element.id ?? 0)"
+                ></app-confirmation-modal>
+              </div>
             </td>
           </tr>
           }

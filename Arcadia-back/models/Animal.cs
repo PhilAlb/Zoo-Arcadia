@@ -8,7 +8,8 @@ namespace ArcadiaBack
         public string Name { get; set; }
         public string Race { get; set; }
         public string ImageUrl { get; set; }
-
+        public int Views { get; set; }
+        public string Comment { get; set; }
         public Habitat? AssociatedHabitat { get; set; }
         [ForeignKey(nameof(AssociatedHabitat))]
         public int? AssociatedHabitatId { get; set; }

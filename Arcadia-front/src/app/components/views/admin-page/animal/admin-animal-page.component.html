@@ -2,6 +2,7 @@
   <!-- Header du tableau -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 class="mb-0">Liste des Animaux</h3>
+    @if(currentRole == Roles.Admin) {
     <button
       type="button"
       class="btn btn-custom"
@@ -10,6 +11,7 @@
     >
       Ajouter un nouvel élément
     </button>
+    }
   </div>
 
   <!-- Modale d'ajout -->
@@ -25,6 +27,8 @@
             <th scope="col">Name</th>
             <th scope="col">Race</th>
             <th scope="col">Habitat Associé</th>
+            <th scope="col">Nombre de Vues</th>
+            <th scope="col">Commentaires</th>
             <th scope="col" class="text-end">Actions</th>
           </tr>
         </thead>
@@ -35,34 +39,50 @@
             <td>{{ element.name }}</td>
             <td>{{ element.race }}</td>
             <td>{{ element.associatedHabitatTitle }}</td>
-            <td class="d-flex justify-content-end">
-              <!-- Boutton Editer -->
+            <td>
+              {{ element.views }}
+              @if(currentRole == Roles.Admin) {
               <button
-                type="button"
                 class="btn btn-link p-0 text-primary"
-                data-bs-toggle="modal"
-                [attr.data-bs-target]="'#editAnimal' + element.id"
+                (click)="restartViews(element)"
               >
-                Editer
-              </button>
-              <app-edit-animal-form
-                [selectedAnimal]="element"
-                (onSubmit)="edit($event)"
-              ></app-edit-animal-form>
+                Réinitialiser<i class="bi bi-arrow-clockwise"></i></button
+              >}
+            </td>
+            <td>{{ element.comment }}</td>
+            <td>
+              <div class="d-flex justify-content-end">
+                <!-- Boutton Editer -->
+                <button
+                  type="button"
+                  class="btn btn-link p-0 text-primary"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#editAnimal' + element.id"
+                >
+                  Editer
+                </button>
+                <app-edit-animal-form
+                  [selectedAnimal]="element"
+                  [currentRole]="currentRole"
+                  (onSubmit)="edit($event)"
+                ></app-edit-animal-form>
 
-              <!-- Boutton Supprimer -->
-              <button
-                type="button"
-                class="btn btn-link p-0 text-danger ms-3"
-                data-bs-toggle="modal"
-                [attr.data-bs-target]="'#confirmationModal' + element.id"
-              >
-                Supprimer
-              </button>
-              <app-confirmation-modal
-                [id]="element.id"
-                (confirmationSent)="delete(element.id ?? 0)"
-              ></app-confirmation-modal>
+                @if(currentRole == Roles.Admin) {
+                <!-- Boutton Supprimer -->
+                <button
+                  type="button"
+                  class="btn btn-link p-0 text-danger ms-3"
+                  data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#confirmationModal' + element.id"
+                >
+                  Supprimer
+                </button>
+                <app-confirmation-modal
+                  [id]="element.id"
+                  (confirmationSent)="delete(element.id ?? 0)"
+                ></app-confirmation-modal>
+                }
+              </div>
             </td>
           </tr>
           }

@@ -33,6 +33,10 @@ namespace Arcadia_back.Migrations
                     b.Property<int?>("AssociatedHabitatId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -45,6 +49,9 @@ namespace Arcadia_back.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Views")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AssociatedHabitatId");
@@ -56,68 +63,52 @@ namespace Arcadia_back.Migrations
                         {
                             Id = 1,
                             AssociatedHabitatId = 1,
+                            Comment = "",
                             ImageUrl = "assets/images/animals/lion1.jpg",
                             Name = "Mufasa",
-                            Race = "Lion"
+                            Race = "Lion",
+                            Views = 0
                         },
                         new
                         {
                             Id = 2,
                             AssociatedHabitatId = 2,
+                            Comment = "",
                             ImageUrl = "assets/images/animals/tiger1.jpg",
                             Name = "Shere Khan",
-                            Race = "Tigre"
+                            Race = "Tigre",
+                            Views = 0
                         },
                         new
                         {
                             Id = 3,
                             AssociatedHabitatId = 2,
+                            Comment = "",
                             ImageUrl = "assets/images/animals/monkey1.jpg",
                             Name = "Louis",
-                            Race = "Singe"
+                            Race = "Singe",
+                            Views = 0
                         },
                         new
                         {
                             Id = 4,
                             AssociatedHabitatId = 1,
+                            Comment = "",
                             ImageUrl = "assets/images/animals/panda1.jpg",
                             Name = "Po",
-                            Race = "Panda"
+                            Race = "Panda",
+                            Views = 0
                         },
                         new
                         {
                             Id = 5,
                             AssociatedHabitatId = 3,
+                            Comment = "",
                             ImageUrl = "assets/images/animals/outter1.jpg",
                             Name = "Angèle",
-                            Race = "Loutre"
+                            Race = "Loutre",
+                            Views = 0
                         });
-                });
-
-            modelBuilder.Entity("ArcadiaBack.AnimalFoodHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AnimalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FoodWeight")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AnimalId");
-
-                    b.ToTable("AnimalFoodHistory");
                 });
 
             modelBuilder.Entity("ArcadiaBack.Contact", b =>
@@ -169,6 +160,10 @@ namespace Arcadia_back.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -193,6 +188,7 @@ namespace Arcadia_back.Migrations
                         new
                         {
                             Id = 1,
+                            Comment = "",
                             Description = "La savane est caractérisée par de vastes plaines herbeuses et les paysages ouverts d'Afrique. Les paysages offrent une végétation clairsemée, principalement composée de hautes herbes, d'arbustes et de quelques arbres dispersés. La savane est connue pour ses climats chauds et ses saisons alternant entre des périodes sèches et des périodes de pluies intenses.",
                             ImageUrl = "assets/images/habitats/savannah1.jpg",
                             ImageVerticalPosition = "30%",
@@ -201,6 +197,7 @@ namespace Arcadia_back.Migrations
                         new
                         {
                             Id = 2,
+                            Comment = "",
                             Description = "La jungle est caractérisée par une végétation dense avec des arbres à canopée élevée, des lianes enchevêtrées, et des fougères luxuriantes. Des cascades et des ruisseaux serpentent à travers la forêt, apportant une ambiance sonore apaisante de l'eau en mouvement.",
                             ImageUrl = "assets/images/habitats/jungle1.webp",
                             ImageVerticalPosition = "55%",
@@ -209,6 +206,7 @@ namespace Arcadia_back.Migrations
                         new
                         {
                             Id = 3,
+                            Comment = "",
                             Description = "Les marais sont caractérisés par des zones humides situées à la transition entre les écosystèmes aquatiques et terrestres, offrant un refuge crucial pour de nombreuses espèces. Découvrez cet environnement riche et diversifié, où chaque coin regorge de vie et de mystères.",
                             ImageUrl = "assets/images/habitats/swamp1.jpg",
                             ImageVerticalPosition = "50%",
@@ -400,36 +398,54 @@ namespace Arcadia_back.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fac71d72-5e8a-4404-9851-a1658c816082",
+                            Id = "45d42d9c-4d65-45c5-b755-e24a6f599ebd",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b3713762-41a5-47d3-b51d-3e67159abc62",
+                            ConcurrencyStamp = "9fecd79a-3ff7-4f22-b7fd-c4ea9f472946",
                             Email = "admin@zoo-arcadia.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Admin",
                             NormalizedEmail = "ADMIN@ZOO-ARCADIA.COM",
                             NormalizedUserName = "ADMIN@ZOO-ARCADIA.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGtBDbcMyPTz06BqmgBj3ss+oNVV0BgGSdjB8xxAEZCQep4euImHchjhxREuI2BQog==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFQF4u/ykNgQY+Iz9D0DxLUJWNwMBioWSgz02gJSF3iyfeE7HZMbR1nfgWp4wVIQJA==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "481953d3-a584-4eac-b745-7f5e03690c29",
+                            SecurityStamp = "39988017-c1ba-409f-a0bd-63f1d330d985",
                             Surname = "Test",
                             TwoFactorEnabled = false,
                             UserName = "admin@zoo-arcadia.com"
                         },
                         new
                         {
-                            Id = "5e162906-6d18-4189-9ad8-d53b33497507",
+                            Id = "0d627fdf-4f8b-4f0b-ab3f-c90c80b26ac2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "55688f55-6b93-45eb-bd31-64b05d2aa34a",
+                            ConcurrencyStamp = "22dac547-485f-45df-9e6c-4a8d7756e060",
+                            Email = "veterinarian@zoo-arcadia.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            Name = "Vétérinaire",
+                            NormalizedEmail = "VETERINARIAN@ZOO-ARCADIA.COM",
+                            NormalizedUserName = "VETERINARIAN@ZOO-ARCADIA.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAECrzzQy+hEpoJPYKG1CobT8ttPZy0GSxqmDpqJ4sDg6++LHYqDoOcZUfaXw/sI1zog==",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "f9922863-5be9-4630-94c7-40428c8a3d06",
+                            Surname = "Test",
+                            TwoFactorEnabled = false,
+                            UserName = "veterinarian@zoo-arcadia.com"
+                        },
+                        new
+                        {
+                            Id = "43fb1563-ed88-4cb0-b719-05302ee30694",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d0740f37-08dd-45d6-ae25-00d2f957b750",
                             Email = "employee@zoo-arcadia.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Employé",
                             NormalizedEmail = "EMPLOYEE@ZOO-ARCADIA.COM",
                             NormalizedUserName = "EMPLOYEE@ZOO-ARCADIA.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENFg487DxKiLrZ0cSGhXlHUj7hS5KYuusSZ2TroVTaETF05rMExKcMUFgVM2UYhXJw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENnz0NHA29reEFq6HIn7z5hWv+Xiz2bNEi63bG3CyHcou0lHAI98Fb9oFWZ6+h4PFw==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "f53ebd7d-8c8c-45e5-bd46-6e8fc8f7693d",
+                            SecurityStamp = "e5af5974-a4e9-415d-9d28-799de0ae28c7",
                             Surname = "Test",
                             TwoFactorEnabled = false,
                             UserName = "employee@zoo-arcadia.com"
@@ -472,8 +488,8 @@ namespace Arcadia_back.Migrations
                         new
                         {
                             Id = "1",
-                            Name = "User",
-                            NormalizedName = "USER"
+                            Name = "Veterinarian",
+                            NormalizedName = "VETERINARIAN"
                         },
                         new
                         {
@@ -572,12 +588,17 @@ namespace Arcadia_back.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "fac71d72-5e8a-4404-9851-a1658c816082",
+                            UserId = "45d42d9c-4d65-45c5-b755-e24a6f599ebd",
                             RoleId = "0"
                         },
                         new
                         {
-                            UserId = "5e162906-6d18-4189-9ad8-d53b33497507",
+                            UserId = "0d627fdf-4f8b-4f0b-ab3f-c90c80b26ac2",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "43fb1563-ed88-4cb0-b719-05302ee30694",
                             RoleId = "2"
                         });
                 });
@@ -608,17 +629,6 @@ namespace Arcadia_back.Migrations
                         .HasForeignKey("AssociatedHabitatId");
 
                     b.Navigation("AssociatedHabitat");
-                });
-
-            modelBuilder.Entity("ArcadiaBack.AnimalFoodHistory", b =>
-                {
-                    b.HasOne("ArcadiaBack.Animal", "Animal")
-                        .WithMany()
-                        .HasForeignKey("AnimalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Animal");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

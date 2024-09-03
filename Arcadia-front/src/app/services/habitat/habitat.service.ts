@@ -21,6 +21,7 @@ export class HabitatService {
 
     h.append('title', habitat.title);
     h.append('description', habitat.description);
+    h.append('comment', habitat.comment ?? "");
     if (habitat.image) h.append('image', habitat.image);
 
     return this.http.post<boolean>(this._url, h, { withCredentials: true });

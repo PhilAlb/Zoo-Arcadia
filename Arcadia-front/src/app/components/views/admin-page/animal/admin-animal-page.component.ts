@@ -4,6 +4,8 @@ import { AnimalService } from '../../../../services/animal/animal.service';
 import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
 import { AddAnimalFormComponent } from '../forms/add-animal-form/add-animal-form.component';
 import { EditAnimalFormComponent } from '../forms/edit-animal-form/edit-animal-form.component';
+import { AccountService } from '../../../../services/account/account.service';
+import { Role } from '../../../../interfaces/admin/user';
 
 @Component({
   selector: 'app-admin-animal-page',
@@ -17,11 +19,20 @@ import { EditAnimalFormComponent } from '../forms/edit-animal-form/edit-animal-f
   styleUrl: './admin-animal-page.component.scss',
 })
 export class AdminAnimalPageComponent implements OnInit {
+  readonly Roles = Role;
+  currentRole: Role;
   list: AnimalDto[] = [];
 
-  constructor(private service: AnimalService) {}
+  constructor(
+    private service: AnimalService,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
+    this.accountService.role$.subscribe((role) => {
+      if (role != null) this.currentRole = role;
+    });
+
     this.getList();
   }
 
@@ -31,7 +42,7 @@ export class AdminAnimalPageComponent implements OnInit {
       .subscribe((data: AnimalDto[]) => (this.list = data));
   }
 
-  add(animal: AnimalDto): void {
+  add(animal: AnimalDto): void {   
     this.service.addAnimal(animal).subscribe(() => this.getList());
   }
 
@@ -43,5 +54,10 @@ export class AdminAnimalPageComponent implements OnInit {
     this.service
       .deleteAnimal(id)
       .subscribe(() => (this.list = this.list.filter((item) => item.id != id)));
+  }
+
+  restartViews(animal: AnimalDto): void {
+    animal.views = 0;
+    this.service.updateAnimal(animal).subscribe(() => this.getList());
   }
 }

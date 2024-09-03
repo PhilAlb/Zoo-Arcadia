@@ -9,7 +9,5 @@ namespace Arcadia_back.models.Dtos
 
         [Required]
         public string Animals { get; set; }
-
-
     }
 }

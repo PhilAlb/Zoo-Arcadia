@@ -23,7 +23,7 @@ export class AddAnimalFormComponent {
   readonly formControls = {
     name: 'name',
     race: 'race',
-    habitat: 'habitat'
+    comment: 'comment',
   };
 
   @Output() onSubmit = new EventEmitter<AnimalDto>();
@@ -42,6 +42,7 @@ export class AddAnimalFormComponent {
       [this.formControls.race]: new FormControl('', {
         validators: Validators.compose([Validators.required]),
       }),
+      [this.formControls.comment]: new FormControl(''),
     });
   }
 
@@ -61,7 +62,9 @@ export class AddAnimalFormComponent {
     const animal: AnimalDto = {
       name: get(this.formControls.name).trim(),
       race: get(this.formControls.race).trim(),
+      comment: get(this.formControls.comment).trim(),
       associatedHabitatId: this.selectedHabitat?.id,
+      views: 0,
       image: this.selectedImage,
     };
     this.resetForm();
@@ -69,7 +72,7 @@ export class AddAnimalFormComponent {
     this.onSubmit.emit(animal);
   }
 
-  resetForm(){
+  resetForm() {
     this.createForm.reset();
     this.selectedHabitat = undefined;
   }

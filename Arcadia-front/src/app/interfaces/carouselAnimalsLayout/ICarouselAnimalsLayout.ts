@@ -1,5 +1,5 @@
 export interface ICarouselAnimalsLayout {
-    url: string;
-    animalName: string,
-    verticalPosition?: string
+  url: string;
+  animalName: string;
+  verticalPosition?: string;
 }

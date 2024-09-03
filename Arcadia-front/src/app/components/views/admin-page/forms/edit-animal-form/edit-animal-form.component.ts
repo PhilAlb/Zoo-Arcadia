@@ -10,6 +10,7 @@ import {
 import { AnimalDto } from '../../../../../interfaces/admin/animal';
 import { HabitatDto } from '../../../../../interfaces/admin/habitat';
 import { HabitatService } from '../../../../../services/habitat/habitat.service';
+import { Role } from '../../../../../interfaces/admin/user';
 
 @Component({
   selector: 'app-edit-animal-form',
@@ -19,15 +20,18 @@ import { HabitatService } from '../../../../../services/habitat/habitat.service'
   styleUrl: './edit-animal-form.component.scss',
 })
 export class EditAnimalFormComponent implements OnInit {
+  readonly Roles = Role;
+
   editForm: FormGroup;
   readonly formControls = {
     name: 'name',
     race: 'race',
-    habitat: 'habitat',
+    comment: 'comment',
   };
 
   @Output() onSubmit = new EventEmitter<AnimalDto>();
   @Input() selectedAnimal: AnimalDto;
+  @Input() currentRole: Role;
 
   habitats: HabitatDto[] = [];
   selectedHabitat?: HabitatDto;
@@ -45,7 +49,13 @@ export class EditAnimalFormComponent implements OnInit {
       [this.formControls.race]: new FormControl(this.selectedAnimal.race, {
         validators: Validators.compose([Validators.required]),
       }),
+      [this.formControls.comment]: new FormControl(this.selectedAnimal.comment),
     });
+
+    if (this.currentRole != Role.Admin) {
+      this.editForm.get('name')?.disable();
+      this.editForm.get('race')?.disable();
+    }
 
     this.habitatService.getHabitats().subscribe((data) => {
       this.habitats = data;
@@ -62,7 +72,9 @@ export class EditAnimalFormComponent implements OnInit {
       id: this.selectedAnimal.id,
       name: get(this.formControls.name).trim(),
       race: get(this.formControls.race).trim(),
+      comment: get(this.formControls.comment).trim(),
       associatedHabitatId: this.selectedHabitat?.id,
+      views: this.selectedAnimal.views,
       imageUrl: this.selectedAnimal.imageUrl,
     };
 

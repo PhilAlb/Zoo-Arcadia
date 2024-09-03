@@ -1,61 +1,63 @@
 .logo {
-    max-width: 100%;
-    height: auto;
-    width: 500px;
-    height: 400px;
+  max-width: 100%;
+  height: auto;
+  width: 500px;
+  height: 400px;
 }
 
 h1 {
-    font-family: "Salsa", sans-serif;
-    font-weight: bold;
-    font-size: 3rem;
+  font-family: "Salsa", sans-serif;
+  font-weight: bold;
+  font-size: 3rem;
 }
 
 h2 {
-    font-family: "Fresca";
-    font-weight: bold;
-    font-size: 3rem;
+  font-family: "Fresca";
+  font-weight: bold;
+  font-size: 3rem;
 }
 
 .carousel-indicators li {
-    list-style: none;
+  list-style: none;
 }
 
 .carousel-indicators [data-bs-target] {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #000;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000;
 }
 
 .carousel-indicators .active {
-    background-color: #fff;
+  background-color: #fff;
 }
 
-.card-testimonies .card {
-    margin-top: 20px;
-    padding: 20px;
-    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
-    border: none;
-    border-radius: 8px;
-    max-width: 100%;
-    margin: 0 auto;
+.card-testimonies {
+  width: 100%;
+  display: flex;
 }
 
 .card-testimonies .card-body {
-    text-align: center;
+  text-align: center;
 }
 
 .btn-testimony {
-    background-color: #87CEEB;
-    font-weight: bold;
-    color: #fff;
-    font-size: 1.3rem;
-    padding-bottom: 50;
+  background-color: #87ceeb;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.3rem;
+  padding-bottom: 50;
 }
 
 .btn-testimony:hover {
-    background-color: #6da6bd;
-    font-weight: bold;
-    color: #fff;
+  background-color: #6da6bd;
+  font-weight: bold;
+  color: #fff;
+}
+
+#carouselTestimonies {
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 }
