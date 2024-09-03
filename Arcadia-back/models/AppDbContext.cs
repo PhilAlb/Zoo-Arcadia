@@ -235,5 +235,24 @@ namespace Arcadia_back.models
                 }
             );
         }
+        private void GenerateContactSeed(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Contact>().HasData(
+                new()
+                {
+                    Id = 1,
+                    Title = "Ouverture le 14 juillet",
+                    Message = "Le zoo sera-t-il ouvert le 14 juillet ?",
+                    Email = "jean-francois.labrosse@mail.com",
+                },
+                new()
+                {
+                    Id = 2,
+                    Title = "Stage de soin aux animaux",
+                    Message = "Proposez-vous des stages de soin aux animaux à destination des enfants ?",
+                    Email = "manon-fournier@mail.com"
+                }
+            );
+        }
     }
 }
