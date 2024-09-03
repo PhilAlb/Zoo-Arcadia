@@ -45,6 +45,7 @@ namespace Arcadia_back.models
             GenerateServiceSeed(modelBuilder);
             GenerateTestimonySeed(modelBuilder);
             GenerateAdminUserSeed(modelBuilder);
+            GenerateContactSeed(modelBuilder);
         }
 
         private void GenerateAdminUserSeed(ModelBuilder modelBuilder)
