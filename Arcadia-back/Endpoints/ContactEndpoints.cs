@@ -8,13 +8,13 @@ public static class ContactEndpoints
 
     public static void MapContactEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet(url, [Authorize(Roles = "Admin")] async (IRepository<Contact> contactRepository) =>
+        app.MapGet(url, [Authorize(Roles = "Admin,Employee")] async (IRepository<Contact> contactRepository) =>
         {
             var contacts = await contactRepository.GetAllAsync();
             return contacts;
         }).WithTags("Admin - Contacts");
 
-        app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Contact> contactRepository, int id) =>
+        app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin, Employee")] async (IRepository<Contact> contactRepository, int id) =>
        {
            await contactRepository.DeleteAsync(id);
            return true;

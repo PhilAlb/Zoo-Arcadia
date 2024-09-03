@@ -35,8 +35,9 @@
             <td>{{ element.title }}</td>
             <td>{{ element.description }}</td>
             <td>{{ element.schedules }}</td>
-            <td class="d-flex justify-content-end">
+            <td>
               <!-- Bouton Editer -->
+              <div class="d-flex justify-content-end">
               <button
                 type="button"
                 class="btn btn-link p-0 text-primary"
@@ -62,7 +63,7 @@
               <app-confirmation-modal
                 [id]="element.id"
                 (confirmationSent)="delete(element.id ?? 0)"
-              ></app-confirmation-modal>
+              ></app-confirmation-modal></div>
             </td>
           </tr>
           }

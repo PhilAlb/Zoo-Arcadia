@@ -65,15 +65,28 @@
             </div>
 
             <div class="mb-3">
-              <label for="role" class="form-label form-item-title"
-                >Administrateur ?</label
-              >
-              <input
-                type="checkbox"
-                id="role"
-                class="role-checkbox"
-                [formControlName]="formControls.isAdmin"
-              />
+              <label for="role" class="form-label form-item-title">Rôle </label>
+              <div>
+                <input
+                  type="radio"
+                  id="admin"
+                  class="role-radio"
+                  [value]="Roles.Admin"
+                  [formControlName]="formControls.role"
+                />
+                <label for="admin">Administrateur</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  id="employee"
+                  class="role-radio"
+                  [value]="Roles.Employee"
+                  [formControlName]="formControls.role"
+                />
+                <label for="employee">Employé</label>
+              </div>
             </div>
 
             <div

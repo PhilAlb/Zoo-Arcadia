@@ -1,9 +1,12 @@
+import { AccountService } from './../../../../services/account/account.service';
 import { Component, OnInit } from '@angular/core';
 import { AddTestimonyFormComponent } from '../forms/add-testimony-form/add-testimony-form.component';
 import { EditTestimonyFormComponent } from '../forms/edit-testimony-form/edit-testimony-form.component';
 import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
 import { TestimonyDto } from '../../../../interfaces/testimony';
 import { TestimonyService } from '../../../../services/testimony/testimony.service';
+import { Observable } from 'rxjs';
+import { Role } from '../../../../interfaces/user';
 
 @Component({
   selector: 'app-admin-testimony-page',
@@ -17,11 +20,20 @@ import { TestimonyService } from '../../../../services/testimony/testimony.servi
   styleUrl: './admin-testimony-page.component.scss',
 })
 export class AdminTestimonyPageComponent implements OnInit {
+  readonly Roles = Role;
+  currentRole: Role;
   list: TestimonyDto[] = [];
 
-  constructor(private service: TestimonyService) {}
+  constructor(
+    private service: TestimonyService,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
+    this.accountService.role$.subscribe((role) => {
+      if (role != null) this.currentRole = role;
+    });
+
     this.getList();
   }
 

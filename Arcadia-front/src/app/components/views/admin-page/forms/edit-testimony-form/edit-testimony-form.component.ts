@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TestimonyDto } from '../../../../../interfaces/testimony';
+import { Role } from '../../../../../interfaces/user';
 
 @Component({
   selector: 'app-edit-testimony-form',
@@ -19,6 +20,7 @@ export class EditTestimonyFormComponent implements OnInit {
 
   @Output() onSubmit = new EventEmitter<TestimonyDto>();
   @Input() selectedTestimony: TestimonyDto;
+  @Input() currentRole: Role;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -32,6 +34,11 @@ export class EditTestimonyFormComponent implements OnInit {
       }),
       [this.formControls.isValidated]: new FormControl(this.selectedTestimony.isValidated),
     });
+
+    if (this.currentRole != Role.Admin){
+      this.editForm.get("pseudo")?.disable();
+      this.editForm.get("message")?.disable();
+    }
   }
   
   save(): void {

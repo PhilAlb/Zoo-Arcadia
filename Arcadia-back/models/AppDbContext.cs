@@ -22,7 +22,7 @@ namespace Arcadia_back.models
         public DbSet<Testimony> Testimonies { get; set; }
         public DbSet<Habitat> Habitats { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
@@ -53,6 +53,8 @@ namespace Arcadia_back.models
             // Seed roles
             var adminRoleId = "0";
             var adminUserId = Guid.NewGuid().ToString();
+            var employeeRoleId = "2";
+            var employeeUserId = Guid.NewGuid().ToString();
 
             modelBuilder.Entity<IdentityRole>().HasData(
                 new IdentityRole
@@ -66,13 +68,19 @@ namespace Arcadia_back.models
                     Id = "1",
                     Name = Role.User.ToString(),
                     NormalizedName = Role.User.ToString().ToUpper(),
+                },
+                new IdentityRole
+                {
+                    Id = employeeRoleId,
+                    Name = Role.Employee.ToString(),
+                    NormalizedName = Role.Employee.ToString().ToUpper(),
                 }
             );
 
             // Seed the admin user
             var hasher = new PasswordHasher<User>();
             var mail = "admin@zoo-arcadia.com";
-            var user = new User()
+            var admin = new User()
             {
                 Id = adminUserId,
                 Name = "Admin",
@@ -89,9 +97,29 @@ namespace Arcadia_back.models
                 LockoutEnabled = false,
                 TwoFactorEnabled = false,
             };
-            user.PasswordHash = hasher.HashPassword(user, "Admin0001");
+            admin.PasswordHash = hasher.HashPassword(admin, "Admin0001");
 
-            modelBuilder.Entity<User>().HasData(user);
+            var employeeMail = "employee@zoo-arcadia.com";
+            var employee = new User()
+            {
+                Id = employeeUserId,
+                Name = "Employé",
+                Surname = "Test",
+                UserName = employeeMail,
+                NormalizedUserName = employeeMail.ToUpper(),
+                Email = employeeMail,
+                NormalizedEmail = employeeMail.ToUpper(),
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                AccessFailedCount = 0,
+                LockoutEnabled = false,
+                TwoFactorEnabled = false,
+            };
+            employee.PasswordHash = hasher.HashPassword(employee, "Employee0001");
+
+            modelBuilder.Entity<User>().HasData(new List<User> { admin, employee });
 
             // Assign admin user to admin role
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(
@@ -99,6 +127,11 @@ namespace Arcadia_back.models
                 {
                     UserId = adminUserId,
                     RoleId = adminRoleId
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = employeeUserId,
+                    RoleId = employeeRoleId
                 }
             );
         }

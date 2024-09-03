@@ -1,19 +1,21 @@
 <div class="container my-5">
   <!-- Header du tableau -->
-  <div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="d-flex mb-4">
     <h3 class="mb-0">Liste des Témoignages</h3>
+    @if(currentRole == Roles.Admin) {
     <button
       type="button"
       class="btn btn-custom"
+      style="margin-left: auto"
       data-bs-toggle="modal"
       data-bs-target="#addTestimony"
     >
       Ajouter un nouvel élément
     </button>
+    <!-- Modale d'ajout -->
+    <app-add-testimony-form (onSubmit)="add($event)"></app-add-testimony-form>
+    }
   </div>
-
-  <!-- Modale d'ajout -->
-  <app-add-testimony-form (onSubmit)="add($event)"></app-add-testimony-form>
 
   <!-- Tableau des témoignages -->
   <div class="card shadow-sm">
@@ -24,7 +26,8 @@
             <th scope="col">#</th>
             <th scope="col">Pseudo</th>
             <th scope="col">Message</th>
-            <th scope="col">Actions</th>
+            <th scope="col" width="7%">Validé ?</th>
+            <th scope="col" width="12%">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +36,7 @@
             <td scope="row">{{ $index + 1 }}</td>
             <td>{{ element.pseudo }}</td>
             <td>{{ element.message }}</td>
+            <td>{{ element.isValidated ? "Oui" : "Non" }}</td>
             <td>
               <!-- Bouton Editer -->
               <button
@@ -45,6 +49,7 @@
               </button>
               <app-edit-testimony-form
                 [selectedTestimony]="element"
+                [currentRole]="currentRole"
                 (onSubmit)="edit($event)"
               ></app-edit-testimony-form>
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { filter, map, Observable, of, switchMap, take, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { RouteLinks } from '../app.routes';
 import { Role } from '../interfaces/user';
 import { AccountService } from '../services/account/account.service';
@@ -12,11 +12,11 @@ export class RoleGuard implements CanActivate {
   constructor(private service: AccountService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-    const expectedRole = route.data['expectedRole'];
+    const expectedRoles: Role[] = route.data['expectedRoles'];
 
     return this.service.role$.pipe(
       map((role: Role | null) => {       
-        if (role == null || role !== expectedRole) {
+        if (role == null || !expectedRoles.includes(role)) {
           this.router.navigate([RouteLinks.Home]);
           return false;
         }

@@ -1,42 +1,120 @@
-<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title w-100 text-center" id="modalTitle">Ajouter un Utilisateur</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div
+  class="modal fade"
+  id="addUser"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="modalTitle">
+          Ajouter un Utilisateur
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="createForm" (submit)="save()">
+          <div>
+            <div class="mb-3">
+              <label for="surname" class="form-label form-item-title"
+                >Nom</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="surname"
+                [formControlName]="formControls.surname"
+              />
             </div>
-            <div class="modal-body">
-                <form [formGroup]="createForm" (submit)="save()">
-                    <div>
-                        <div class="mb-3">
-                            <label for="surname" class="form-label form-item-title">Nom</label>
-                            <input type="text" class="form-control" id="surname" [formControlName]="formControls.surname">
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label form-item-title">Prénom</label>
-                            <input class="form-control" id="message" [formControlName]="formControls.name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="mailAddress" class="form-label form-item-title">Adresse mail</label>
-                            <input type="email" class="form-control" id="mailAddress" [formControlName]="formControls.mailAddress">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label form-item-title">Mot de passe</label>
-                            <input type="password" [minLength]="6" class="form-control" id="password" [formControlName]="formControls.password">
-                        </div>
-                       
-                        <div class="mb-3">
-                            <label for="role" class="form-label form-item-title">Administrateur ?</label>
-                            <input type="checkbox" id="role" class="role-checkbox" [formControlName]="formControls.isAdmin">
-                        </div>
+            <div class="mb-3">
+              <label for="name" class="form-label form-item-title"
+                >Prénom</label
+              >
+              <input
+                class="form-control"
+                id="message"
+                [formControlName]="formControls.name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="mailAddress" class="form-label form-item-title"
+                >Adresse mail</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="mailAddress"
+                [formControlName]="formControls.mailAddress"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label form-item-title"
+                >Mot de passe</label
+              >
+              <input
+                type="password"
+                [minLength]="6"
+                class="form-control"
+                id="password"
+                [formControlName]="formControls.password"
+              />
+            </div>
 
-                        <div class="modal-footer custom-modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-cancel" data-bs-toggle="modal" data-bs-target="#addUser">Fermer</button>
-                            <button [disabled]="createForm.invalid" type="submit" class="btn btn-submit" data-bs-toggle="modal" data-bs-target="#addUser">Ajouter</button>
-                        </div>
-                    </div>
-                </form>
+            <div class="mb-3">
+              <label for="role" class="form-label form-item-title">Rôle </label>
+              <div>
+                <input
+                  type="radio"
+                  id="admin"
+                  class="role-radio"
+                  [value]="Roles.Admin"
+                  [formControlName]="formControls.role"
+                />
+                <label for="admin">Administrateur</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  id="employee"
+                  class="role-radio"
+                  [value]="Roles.Employee"
+                  [formControlName]="formControls.role"
+                />
+                <label for="employee">Employé</label>
+              </div>
             </div>
-        </div>
+
+            <div
+              class="modal-footer custom-modal-footer d-flex justify-content-center"
+            >
+              <button
+                type="button"
+                class="btn btn-cancel"
+                data-bs-toggle="modal"
+                data-bs-target="#addUser"
+              >
+                Fermer
+              </button>
+              <button
+                [disabled]="createForm.invalid"
+                type="submit"
+                class="btn btn-submit"
+                data-bs-toggle="modal"
+                data-bs-target="#addUser"
+              >
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

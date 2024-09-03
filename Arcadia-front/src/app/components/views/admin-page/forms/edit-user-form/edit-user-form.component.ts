@@ -16,8 +16,9 @@ export class EditUserFormComponent implements OnInit {
     surname: 'message',
     mailAddress: 'mailAddress',
     password: 'password',
-    isAdmin: 'isAdmin',
+    role: 'role',
   };
+  readonly Roles = Role;
 
   @Output() onSubmit = new EventEmitter<UserDto>();
   @Input() selectedUser: UserDto;
@@ -41,7 +42,9 @@ export class EditUserFormComponent implements OnInit {
           Validators.minLength(6),
         ]),
       }),
-      [this.formControls.isAdmin]: new FormControl(this.selectedUser.role == Role.Admin),
+      [this.formControls.role]: new FormControl(this.selectedUser.role, {
+        validators: Validators.compose([Validators.required]),
+      })
     });
   }
   
@@ -54,7 +57,7 @@ export class EditUserFormComponent implements OnInit {
       surname: get(this.formControls.surname).trim(),
       email: get(this.formControls.mailAddress).trim(),
       password: get(this.formControls.password).trim(),
-      role: get(this.formControls.isAdmin) == true ? Role.Admin : Role.User,
+      role: get(this.formControls.role),
     };
 
     this.onSubmit.emit(user);

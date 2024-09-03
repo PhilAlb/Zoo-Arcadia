@@ -26,8 +26,14 @@ export class HeaderComponent implements OnInit {
     this.service.checkAuthenticationState();
 
     this.service.role$.subscribe((role) => {
-      if (role == Role.Admin)
-        this.links.push({ label: 'Admin', url: `/${RouteLinks.Admin}` });
+      switch (role) {
+        case Role.Admin:
+          this.links.push({ label: 'Administrateur', url: `/${RouteLinks.Admin}` });
+          break;
+        case Role.Employee:
+          this.links.push({ label: 'Employé', url: `/${RouteLinks.Admin}` });
+          break;
+      }
     });
   }
 }

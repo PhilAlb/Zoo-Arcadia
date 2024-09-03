@@ -9,7 +9,7 @@ public static class TestimonyEndpoints
 
     public static void MapTestimonyEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet(url, [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository) =>
+        app.MapGet(url, [Authorize(Roles = "Admin, Employee")] async (IRepository<Testimony> testimonyRepository) =>
         {
             return await testimonyRepository.GetAllAsync(); 
         }).WithTags("Admin - Testimonies");
@@ -20,7 +20,7 @@ public static class TestimonyEndpoints
             return true;
         }).WithTags("Admin - Testimonies");
 
-        app.MapPut(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony, int id) =>
+        app.MapPut(url + "/{id}", [Authorize(Roles = "Admin, Employee")] async (IRepository<Testimony> testimonyRepository, [FromBody] Testimony testimony, int id) =>
         {
             var testimonyToUpdate = await testimonyRepository.GetByIdAsync(id);
             if (testimonyToUpdate == null) return false;
@@ -33,7 +33,7 @@ public static class TestimonyEndpoints
             return true;
         }).WithTags("Admin - Testimonies");
 
-        app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin")] async (IRepository<Testimony> testimonyRepository, int id) =>
+        app.MapDelete(url + "/{id}", [Authorize(Roles = "Admin, Employee")] async (IRepository<Testimony> testimonyRepository, int id) =>
         {
             await testimonyRepository.DeleteAsync(id);
             return true;

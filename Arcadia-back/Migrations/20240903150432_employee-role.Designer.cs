@@ -4,6 +4,7 @@ using Arcadia_back.models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Arcadia_back.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240903150432_employee-role")]
+    partial class employeerole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -400,39 +403,21 @@ namespace Arcadia_back.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fac71d72-5e8a-4404-9851-a1658c816082",
+                            Id = "40ce474f-16ec-45c9-8b5e-aed04d5db56a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b3713762-41a5-47d3-b51d-3e67159abc62",
+                            ConcurrencyStamp = "e4bb0392-849b-457c-bbba-021f2fa52481",
                             Email = "admin@zoo-arcadia.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Admin",
                             NormalizedEmail = "ADMIN@ZOO-ARCADIA.COM",
                             NormalizedUserName = "ADMIN@ZOO-ARCADIA.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGtBDbcMyPTz06BqmgBj3ss+oNVV0BgGSdjB8xxAEZCQep4euImHchjhxREuI2BQog==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECDzRhJ2EswKwWcavah1/BVGAULsi+3g88ZWRsppc5KRJ+PEm3fd3scZClrMSF1xqg==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "481953d3-a584-4eac-b745-7f5e03690c29",
+                            SecurityStamp = "399936d7-57bb-4c24-be1f-87e91bf46e06",
                             Surname = "Test",
                             TwoFactorEnabled = false,
                             UserName = "admin@zoo-arcadia.com"
-                        },
-                        new
-                        {
-                            Id = "5e162906-6d18-4189-9ad8-d53b33497507",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "55688f55-6b93-45eb-bd31-64b05d2aa34a",
-                            Email = "employee@zoo-arcadia.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            Name = "Employé",
-                            NormalizedEmail = "EMPLOYEE@ZOO-ARCADIA.COM",
-                            NormalizedUserName = "EMPLOYEE@ZOO-ARCADIA.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENFg487DxKiLrZ0cSGhXlHUj7hS5KYuusSZ2TroVTaETF05rMExKcMUFgVM2UYhXJw==",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "f53ebd7d-8c8c-45e5-bd46-6e8fc8f7693d",
-                            Surname = "Test",
-                            TwoFactorEnabled = false,
-                            UserName = "employee@zoo-arcadia.com"
                         });
                 });
 
@@ -572,13 +557,8 @@ namespace Arcadia_back.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "fac71d72-5e8a-4404-9851-a1658c816082",
+                            UserId = "40ce474f-16ec-45c9-8b5e-aed04d5db56a",
                             RoleId = "0"
-                        },
-                        new
-                        {
-                            UserId = "5e162906-6d18-4189-9ad8-d53b33497507",
-                            RoleId = "2"
                         });
                 });
 

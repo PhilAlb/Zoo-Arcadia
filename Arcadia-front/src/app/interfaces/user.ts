@@ -9,5 +9,5 @@ export interface UserDto {
 
 export enum Role {
   Admin,
-  User,
+  Employee,
 }

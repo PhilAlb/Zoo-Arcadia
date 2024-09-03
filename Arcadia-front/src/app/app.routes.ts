@@ -18,6 +18,7 @@ export enum RouteLinks {
   Habitats = 'habitats',
   Contact = 'contact',
   Admin = 'admin',
+  Employee = 'employee',
   Users = 'users',
   Testimonies = 'testimonies',
   Animals = 'animals',
@@ -31,7 +32,7 @@ export const routes: Routes = [
     path: RouteLinks.Admin,
     component: AdminPageComponent,
     canActivate: [RoleGuard],
-    data: { expectedRole: Role.Admin },
+    data: { expectedRoles: [Role.Admin, Role.Employee] },
     children: [
       {
         path: RouteLinks.Animals,

@@ -1,5 +1,6 @@
-    public enum Role
-    {
-        Admin,
-        User,
-    }
+public enum Role
+{
+    Admin,
+    Employee,
+    User,
+}

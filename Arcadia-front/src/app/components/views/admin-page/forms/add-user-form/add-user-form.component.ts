@@ -7,7 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Role, UserDto } from '../../../../../interfaces/user';
+import { UserDto } from '../../../../../interfaces/user';
+import { Role } from './../../../../../interfaces/user';
 
 @Component({
   selector: 'app-add-user-form',
@@ -23,8 +24,9 @@ export class AddUserFormComponent {
     surname: 'message',
     mailAddress: 'mailAddress',
     password: 'password',
-    isAdmin: 'isAdmin',
+    role: 'role',
   };
+  readonly Roles = Role;
 
   @Output() onSubmit = new EventEmitter<UserDto>();
 
@@ -45,7 +47,9 @@ export class AddUserFormComponent {
           Validators.minLength(6),
         ]),
       }),
-      [this.formControls.isAdmin]: new FormControl(false),
+      [this.formControls.role]: new FormControl(null, {
+        validators: Validators.compose([Validators.required]),
+      }),
     });
   }
 
@@ -57,7 +61,7 @@ export class AddUserFormComponent {
       surname: get(this.formControls.surname).trim(),
       email: get(this.formControls.mailAddress).trim(),
       password: get(this.formControls.password).trim(),
-      role: get(this.formControls.isAdmin) == true ? Role.Admin : Role.User,
+      role: get(this.formControls.role),
     };
 
     this.createForm.reset();
