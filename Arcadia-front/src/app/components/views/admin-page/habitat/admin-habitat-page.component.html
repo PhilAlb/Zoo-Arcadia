@@ -40,13 +40,8 @@
             <td>
               <div class="d-flex justify-content-end">
                 <!-- Bouton Editer -->
-                <button
-                  type="button"
-                  class="btn btn-link p-0 text-primary"
-                  data-bs-toggle="modal"
-                  [attr.data-bs-target]="'#editHabitat' + element.id"
-                >
-                  Editer
+                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#editHabitat' + element.id">
+                  <i class="bi bi-pencil"></i>
                 </button>
                 <app-edit-habitat-form
                   [selectedHabitat]="element"
@@ -55,14 +50,9 @@
                 ></app-edit-habitat-form>
 
                 <!-- Bouton Supprimer -->
-                @if(currentRole == Roles.Admin) {
-                <button
-                  type="button"
-                  class="btn btn-link p-0 text-danger ms-3"
-                  data-bs-toggle="modal"
-                  [attr.data-bs-target]="'#confirmationModal' + element.id"
-                >
-                  Supprimer
+@if(currentRole == Roles.Admin) {
+                <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#confirmationModal' + element.id">
+                  <i class="bi bi-trash"></i>
                 </button>
                 <app-confirmation-modal
                   [id]="element.id"

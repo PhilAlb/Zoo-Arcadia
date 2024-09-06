@@ -40,13 +40,8 @@
             <td>
               <div class="d-flex justify-content-end">
                 <!-- Bouton Editer -->
-                <button
-                  type="button"
-                  class="btn btn-link p-0 text-primary"
-                  data-bs-toggle="modal"
-                  [attr.data-bs-target]="'#editUser' + element.id"
-                >
-                  Editer
+                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#editUser' + element.id">
+                  <i class="bi bi-pencil"></i>
                 </button>
                 <app-edit-user-form
                   [selectedUser]="element"
@@ -54,13 +49,8 @@
                 ></app-edit-user-form>
 
                 <!-- Bouton Supprimer -->
-                <button
-                  type="button"
-                  class="btn btn-link p-0 text-danger ms-3"
-                  data-bs-toggle="modal"
-                  [attr.data-bs-target]="'#confirmationModal' + element.id"
-                >
-                  Supprimer
+                <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#confirmationModal' + element.id">
+                  <i class="bi bi-trash"></i>
                 </button>
                 <app-confirmation-modal
                   [id]="element.id"

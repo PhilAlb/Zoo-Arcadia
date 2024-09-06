@@ -39,27 +39,21 @@
             <td>{{ element.name }}</td>
             <td>{{ element.race }}</td>
             <td>{{ element.associatedHabitatTitle }}</td>
-            <td>
-              {{ element.views }}
+            <td>{{ element.views }}
+              <!-- Bouton Réinitialiser -->
               @if(currentRole == Roles.Admin) {
-              <button
-                class="btn btn-link p-0 text-primary"
-                (click)="restartViews(element)"
-              >
-                Réinitialiser<i class="bi bi-arrow-clockwise"></i></button
-              >}
+              <button class="btn btn-warning ms-2" (click)="restartViews(element)">
+                <i class="bi bi-arrow-clockwise"></i>
+              </button>
+              }
             </td>
-            <td>{{ element.comment }}</td>
+            
+            
             <td>
               <div class="d-flex justify-content-end">
                 <!-- Boutton Editer -->
-                <button
-                  type="button"
-                  class="btn btn-link p-0 text-primary"
-                  data-bs-toggle="modal"
-                  [attr.data-bs-target]="'#editAnimal' + element.id"
-                >
-                  Editer
+                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#editAnimal' + element.id">
+                  <i class="bi bi-pencil"></i>
                 </button>
                 <app-edit-animal-form
                   [selectedAnimal]="element"
@@ -69,13 +63,8 @@
 
                 @if(currentRole == Roles.Admin) {
                 <!-- Boutton Supprimer -->
-                <button
-                  type="button"
-                  class="btn btn-link p-0 text-danger ms-3"
-                  data-bs-toggle="modal"
-                  [attr.data-bs-target]="'#confirmationModal' + element.id"
-                >
-                  Supprimer
+                <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#confirmationModal' + element.id">
+                  <i class="bi bi-trash"></i>
                 </button>
                 <app-confirmation-modal
                   [id]="element.id"
