@@ -50,7 +50,7 @@
                 ></app-edit-habitat-form>
 
                 <!-- Bouton Supprimer -->
-@if(currentRole == Roles.Admin) {
+                @if(currentRole == Roles.Admin) {
                 <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#confirmationModal' + element.id">
                   <i class="bi bi-trash"></i>
                 </button>
