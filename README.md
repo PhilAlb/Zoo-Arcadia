@@ -49,11 +49,15 @@ Pour démarrer l'application la première fois, veuillez exécuter sur un termin
 ./first_launch.sh
 ```
 
+ou cliquez sur le fichier **first_launch.bat**
+
 Puis à chaque nouvelle initialisation, veuillez exécuter le script suivant dans le répertoire de l'application :
 
 ```bash
 ./launch_scripts.sh
 ```
+
+ou cliquez sur le fichier **launch_scripts.bat**
 
 **Note**:
 
