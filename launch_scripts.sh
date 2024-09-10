@@ -9,8 +9,8 @@ cleanup() {
 # Trap SIGINT and SIGTERM
 trap cleanup SIGINT SIGTERM
 
-./front_run.sh &
 ./back_run.sh
+./front_run.sh &
 
 # Wait for all background processes to finish
 wait
