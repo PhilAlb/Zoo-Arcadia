@@ -26,11 +26,11 @@ namespace Arcadia_back.models
         {
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
-                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Value"));
+                optionsBuilder.UseInMemoryDatabase("Arcadia_Database");
             }
             else
             {
-                optionsBuilder.UseInMemoryDatabase("Arcadia_Database");
+                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Value"));
             }
         }
 
