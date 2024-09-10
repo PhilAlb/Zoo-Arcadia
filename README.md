@@ -9,8 +9,8 @@
 ### URLs du Déploiement
 
 Le site a été déployé sur l'outil <img height="15" src="https://global.discourse-cdn.com/business6/uploads/render/original/2X/1/11352202c8503f736bea5efb59684f678d7c860c.svg"> [**Render**](https://render.com/) aux adresses suivantes : 
-  - Front : 
-  - Back :
+  - Front
+  - Back
 
 
 ### Modules
@@ -43,7 +43,13 @@ N'oubliez pas d'ajouter les chemins d'angular et node au PATH de vos environneme
 
 ### Start
 
-Pour démarrer l'application, veuillez exécuter sur un terminal git bash le script suivant dans le répertoire de l'application :
+Pour démarrer l'application la première fois, veuillez exécuter sur un terminal git bash le script suivant dans le répertoire de l'application :
+
+```bash
+./first_launch.sh
+```
+
+Puis à chaque nouvelle initialisation, veuillez exécuter le script suivant dans le répertoire de l'application :
 
 ```bash
 ./launch_scripts.sh
