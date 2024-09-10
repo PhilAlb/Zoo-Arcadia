@@ -6,6 +6,13 @@
 
 </div>
 
+### URLs du Déploiement
+
+Le site a été déployé sur l'outil <img height="15" src="https://global.discourse-cdn.com/business6/uploads/render/original/2X/1/11352202c8503f736bea5efb59684f678d7c860c.svg"> [**Render**](https://render.com/) aux adresses suivantes : 
+  - Front : 
+  - Back :
+
+
 ### Modules
 
 - <img height="15" src="https://user-images.githubusercontent.com/25181517/183890595-779a7e64-3f43-4634-bad2-eceef4e80268.png"> Angular web app
