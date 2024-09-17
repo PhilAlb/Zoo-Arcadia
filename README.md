@@ -9,8 +9,8 @@
 ### URLs du Déploiement
 
 Le site a été déployé sur l'outil <img height="15" src="https://global.discourse-cdn.com/business6/uploads/render/original/2X/1/11352202c8503f736bea5efb59684f678d7c860c.svg"> [**Render**](https://render.com/) aux adresses suivantes : 
-  - Front
-  - Back
+  - Front : (https://zoo-arcadia-ufm9.onrender.com)
+  - Back : https://arcadia-back-bikt.onrender.com/swagger
 
 
 ### Modules
@@ -41,7 +41,7 @@ Le site a été déployé sur l'outil <img height="15" src="https://global.disco
 
 N'oubliez pas d'ajouter les chemins d'angular et node au PATH de vos environnements variables si besoin.
 
-### Start
+### Lancer l'application
 
 Pour démarrer l'application la première fois, veuillez exécuter sur un terminal git bash le script suivant dans le répertoire de l'application :
 
@@ -58,6 +58,14 @@ Puis à chaque nouvelle initialisation, veuillez exécuter le script suivant dan
 ```
 
 ou cliquez sur le fichier **launch_scripts.bat**
+
+### Utilisateurs
+
+**Admin** email : admin@zoo-arcadia.com  |  mot de passe : Admin0001
+
+**Employé** email : employee@zoo-arcadia.com  |  mot de passe : Employee0001
+
+**Vétérinaire** email : veterinarian@zoo-arcadia.com  |  mot de passe : Veterinarian0001
 
 **Note**:
 
