@@ -2,7 +2,7 @@
 <div class=" align-items-center">
   <h1>Zoo Arcadia</h1>
   <p>Site vitrine pour le zoo Arcadia résultat de l'ECF de Studi. Le site présente les différents services et habitats proposés dans le zoo.</p>
-  <p>L'interface administrateur, employé et véterinaire qui seront implémentées plus tard permettront de gérer les services et les animaux.</p>
+  <p>L'interface administrateur et employé permettent de gérer le site.</p>
 
 </div>
 
@@ -51,21 +51,26 @@ Pour démarrer l'application la première fois, veuillez exécuter sur un termin
 
 ou cliquez sur le fichier **first_launch.bat**
 
+Ce script vous placera sur la branche démo qui gère la base de données de façon "in-memory" pour que les données apparaissent malgré l'initialisation en local
+
+
 Puis à chaque nouvelle initialisation, veuillez exécuter le script suivant dans le répertoire de l'application :
 
 ```bash
 ./launch_scripts.sh
 ```
 
-ou cliquez sur le fichier **launch_scripts.bat**
+ou cliquez sur le fichier **launch_scripts.bat** (veillez à être placé sur la branche démo)
 
 ### Utilisateurs
 
-**Admin** email : admin@zoo-arcadia.com  |  mot de passe : Admin0001
+**Admin** 
 
-**Employé** email : employee@zoo-arcadia.com  |  mot de passe : Employee0001
+email : admin@zoo-arcadia.com  |  mot de passe : Admin0001
 
-**Vétérinaire** email : veterinarian@zoo-arcadia.com  |  mot de passe : Veterinarian0001
+**Employé** 
+
+email : employee@zoo-arcadia.com  |  mot de passe : Employee0001
 
 **Note**:
 
