@@ -17,11 +17,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
     {
-        options.UseSqlServer(configuration.GetConnectionString("Value"));
+        options.UseInMemoryDatabase("Arcadia_Database");
     }
     else
     {
-        options.UseInMemoryDatabase("Arcadia_Database");
+        options.UseSqlServer(configuration.GetConnectionString("Value"));
     }
 });
 
