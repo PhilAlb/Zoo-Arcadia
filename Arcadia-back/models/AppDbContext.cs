@@ -205,7 +205,7 @@ namespace Arcadia_back.models
                     Race = "Panda",
                     Comment = "",
                     Views = 0,
-                    AssociatedHabitatId = 1,
+                    AssociatedHabitatId = 2,
                 },
                 new()
                 {
