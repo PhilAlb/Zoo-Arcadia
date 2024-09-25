@@ -2,15 +2,15 @@
 <div class=" align-items-center">
   <h1>Zoo Arcadia</h1>
   <p>Site vitrine pour le zoo Arcadia résultat de l'ECF de Studi. Le site présente les différents services et habitats proposés dans le zoo.</p>
-  <p>L'interface administrateur, employé et véterinaire qui seront implémentées plus tard permettront de gérer les services et les animaux.</p>
+  <p>L'interface administrateur et employé permettent de gérer le site.</p>
 
 </div>
 
 ### URLs du Déploiement
 
 Le site a été déployé sur l'outil <img height="15" src="https://global.discourse-cdn.com/business6/uploads/render/original/2X/1/11352202c8503f736bea5efb59684f678d7c860c.svg"> [**Render**](https://render.com/) aux adresses suivantes : 
-  - Front : 
-  - Back :
+  - Front : (https://zoo-arcadia-ufm9.onrender.com)
+  - Back : https://arcadia-back-bikt.onrender.com/swagger
 
 
 ### Modules
@@ -41,13 +41,36 @@ Le site a été déployé sur l'outil <img height="15" src="https://global.disco
 
 N'oubliez pas d'ajouter les chemins d'angular et node au PATH de vos environnements variables si besoin.
 
-### Start
+### Lancer l'application
 
-Pour démarrer l'application, veuillez exécuter sur un terminal git bash le script suivant dans le répertoire de l'application :
+Pour démarrer l'application la première fois, veuillez exécuter sur un terminal git bash le script suivant dans le répertoire de l'application :
+
+```bash
+./first_launch.sh
+```
+
+ou cliquez sur le fichier **first_launch.bat**
+
+Ce script vous placera sur la branche démo qui gère la base de données de façon "in-memory" pour que les données apparaissent malgré l'initialisation en local
+
+
+Puis à chaque nouvelle initialisation, veuillez exécuter le script suivant dans le répertoire de l'application :
 
 ```bash
 ./launch_scripts.sh
 ```
+
+ou cliquez sur le fichier **launch_scripts.bat** (veillez à être placé sur la branche démo)
+
+### Utilisateurs
+
+**Admin** 
+
+email : admin@zoo-arcadia.com  |  mot de passe : Admin0001
+
+**Employé** 
+
+email : employee@zoo-arcadia.com  |  mot de passe : Employee0001
 
 **Note**:
 
